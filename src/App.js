@@ -1,4 +1,8 @@
-// import logo from './logo.svg';
+
+// carosel css 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Footer from './components/Footer/Footer';

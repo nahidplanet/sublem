@@ -24,7 +24,7 @@ const Footer = () => {
 
             
             {/* footer  */}
-            <div className='text-gray-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 p-10'>
+            <div className='text-gray-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 p-10 mt-96'>
 
                 <div className=" social">
                     <h4 className='capitalize font-semibold text-gray-700'>social</h4>

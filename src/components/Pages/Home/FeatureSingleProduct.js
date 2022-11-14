@@ -4,26 +4,26 @@ import { HeartIcon } from '@heroicons/react/24/solid'
 
 const FeatureSingleProduct = () => {
     return (
-        <div className=' w-[330px] h-[340px] border p-2'>
-            <div className="w-[300px]  h-[200px] border  mx-auto ">
-                <img className=' w-full h-full mx-auto'
-                    src="https://www.panemirates.com/images/calgary-3-seater-sofa-p42078-184865_related.jpg"
-                    alt="productimage" />
-            </div>
-            <div className="name">
-                <h3 className='text-gray-800'>Everwind Corner Sofa set</h3>
-            </div>
-            <div className='flex gap-4 text-sm'>
-                <span>10,000 AED</span>
-                <del >15,000 AED</del>
-                <span>save 5,000 AED</span>
-            </div>
-            <div className='grid grid-cols-3 gap-3 text-gray-800'>
-                <button className=' border p-2 '>but now</button>
-                <button >view</button>
-                <button className='flex justify-center items-center'>
-                    <HeartIcon className='w-6 h-6 text-gray-600' />
-                </button>
+        <div className='p-2'>
+            <div className="card rounded-none border text-gray-900 ">
+                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                <div className="card-body p-2">
+                    <div className="card-actions ">
+                        <p className='py-1 my-1 text-lg'>Lorem ipsum dolor sit amet.</p>
+                        <div className='text-xm md:text-md flex justify-between font-semibold w-full'>
+                            <p className='text-red-700 font-semibold'>4,000 <span>AED</span></p>
+                            <p className='font-normal'> <del>6,000</del> <span className='font-semibold'>AED</span> </p>
+                            <p> <span className='text-gray-800 font-bold'>save:</span> 4,000</p>
+                        </div>
+                        <div className='text-xm md:text-md flex justify-evenly gap-5 mt-3 w-full'>
+                            <button className="border p-1 rounded-sm w-5/12">View</button> 
+                            <button className="border p-1 rounded-sm w-5/12">Add Cart</button>
+                            <button className="  w-2/12">
+                                <HeartIcon className='text-gray-700 w-6 h-6'></HeartIcon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
