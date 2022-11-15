@@ -10,15 +10,16 @@ import Header from './components/Header/Header';
 import Home from './components/Pages/Home/Home';
 
 function App() {
+
   return (
     <div className="App bg-white">
-      <Header></Header>
+      <Header ></Header>
       <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/" element={<Home ></Home>}></Route>
         <Route path="/about" element={<li>this is about</li>}></Route>
         <Route path="/contact" element={<li>this is contact</li>}></Route>
       </Routes>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 }

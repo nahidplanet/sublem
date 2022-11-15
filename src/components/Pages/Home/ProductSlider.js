@@ -1,5 +1,4 @@
-// import React from 'react';
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+
 import React from "react";
 import Slider from "react-slick";
 import FeatureSingleProduct from "./FeatureSingleProduct";
@@ -7,8 +6,8 @@ import FeatureSingleProduct from "./FeatureSingleProduct";
 const ProductSlider = () => {
 	var settings = {
 		dots: false,
-        prevArrow: <ChevronLeftIcon className="w-10 h-10 text-black"></ChevronLeftIcon>,
-		nextArrow:<ChevronRightIcon className="w-10 h-10 text-black"></ChevronRightIcon>,
+        prevArrow: <></>,
+		nextArrow:<></>,
 		speed: 800,
 		initialSlide: 0,
 		infinite: true,
@@ -73,10 +72,10 @@ const ProductSlider = () => {
 		]
 	};
 	return (
-		<div className="w-11/12 mx-auto mt-14">
+		<div className=" mx-auto mt-14">
 			<div className="flex flex-col items-center">
 				<h1 className="text-2xl font-semibold text-gray-900 capitalize ">Featured Products</h1>
-				<div className="divider h-[1px] bg-gray-400 font-bold"></div> 
+				<div className="divider h-[1px] bg-gray-400"></div> 
 			</div>
 			<Slider {...settings} className="mt-3 mb-20">
 				<div className="">

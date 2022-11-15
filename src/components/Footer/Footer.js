@@ -1,5 +1,4 @@
 import React from 'react';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import visa from '../../../src/assets/footer/visa.jpg'
 import master from '../../../src/assets/footer/master.png'
 
@@ -24,7 +23,7 @@ const Footer = () => {
 
             
             {/* footer  */}
-            <div className='text-gray-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 p-10 mt-96'>
+            <div className='text-gray-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5  mt-96'>
 
                 <div className=" social">
                     <h4 className='capitalize font-semibold text-gray-700'>social</h4>
@@ -75,7 +74,7 @@ const Footer = () => {
                 </div>
             </div>
             {/* footer bottom */}
-            <div className='mx-3 pb-5 '>
+            <div className=' pb-5 '>
                 <div className='flex justify-between items-center text-sm'>
                     <p>© 2022 Pan Emirates Home Furnishings. All Rights Reserved.</p>
                     <p>eCommerce by Visualsoft</p>

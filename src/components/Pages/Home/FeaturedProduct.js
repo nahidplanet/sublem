@@ -8,7 +8,7 @@ const FeaturedProduct = () => {
                 <h1 className='capitalize font-semibold text-2xl text-gray-700'>Featured Products</h1>
                 <div className="divider"></div>
             </div>
-            <div className="product-section flex gap-9">
+            <div className="product-section ">
                 <FeatureSingleProduct></FeatureSingleProduct>
                 <FeatureSingleProduct></FeatureSingleProduct>
                 <FeatureSingleProduct></FeatureSingleProduct>

@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import MobileNavbarSingle from './MobileNavbarSingle';
 
-const MobileNavbar = () => {
+const MobileNavbar = ({open}) => {
 	const [menuData, setMenuData] = useState([]);
+	
 	useEffect(() => {
 		fetch("menuData.json")
 			.then(res => res.json())
@@ -11,11 +12,14 @@ const MobileNavbar = () => {
 	}, [])
 	
 	return (
-		<>
+		<div>
+
+		{open && <>
 			{
 				menuData.map(data => <MobileNavbarSingle key={data.id} data={data} ></MobileNavbarSingle>)
 			}
-		</>
+		</>}
+		</div>
 
 	);
 };

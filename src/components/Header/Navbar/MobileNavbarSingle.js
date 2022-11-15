@@ -1,16 +1,20 @@
+import { ArrowLongRightIcon } from '@heroicons/react/24/solid';
 import React, { useState } from 'react';
 
 const MobileNavbarSingle = ({ data }) => {
 	const [open, setOpen] = useState(false);
 	const handleNavbar = () => setOpen(!open);
 	return (
-		<div onClick={handleNavbar} className={` lg:hidden border px-20 collapse collapse-plus ${open ? 'collapse-open' : 'collapse-close'}`}>
+		<div onClick={handleNavbar} className={`lg:hidden border  collapse collapse-plus ${open ? 'collapse-open' : 'collapse-close'}`}>
 			<div className="collapse-title text-xl font-medium">
-				{data.category}
+				<p className='capitalize text-gray-900 font-semibold mt-2 ml-5'>{data.category}</p>
 			</div>
 			<div className="collapse-content">
 				{
-					data?.routes?.map((route, index) => <p key={index}>{route.name}</p>)
+					data?.routes?.map((route, index) => <div className='flex justify-between px-3 items-center'>
+						<p className='capitalize text-gray-700 font-semibold' key={index}>{route.name} </p>
+						<span><ArrowLongRightIcon className='w-4 h-4 text-gray-700 ml-2'></ArrowLongRightIcon></span>
+					</div>)
 				}
 			</div>
 		</div>

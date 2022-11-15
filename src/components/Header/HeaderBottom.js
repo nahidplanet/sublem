@@ -3,23 +3,7 @@ import Slider from "react-slick";
 import { ArrowUturnLeftIcon, TruckIcon } from '@heroicons/react/24/solid'
 
 const HeaderBottom = () => {
-    const bottomMenuData =[
-        {
-            id:1,
-            logo : "",
-            text:"Free Delivery and Fixing With No Minimum Spend*"
-        },
-        {
-            id:1,
-            logo : "",
-            text:"Delivery within 48 hours- Order before 4pm*"
-        },
-        {
-            id:1,
-            logo : "",
-            text:"Free and Easy Returns Withing 72 hours*"
-        },
-    ]
+   
     var settings = {
         dots: false,
         nextArrow: <></>,

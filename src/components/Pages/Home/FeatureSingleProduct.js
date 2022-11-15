@@ -15,7 +15,7 @@ const FeatureSingleProduct = () => {
                             <p className='font-normal'> <del>6,000</del> <span className='font-semibold'>AED</span> </p>
                             <p> <span className='text-gray-800 font-bold'>save:</span> 4,000</p>
                         </div>
-                        <div className='text-xm md:text-md flex justify-evenly gap-5 mt-3 w-full'>
+                        <div className='text-xm md:text-md flex mb-2 justify-evenly gap-5 mt-3 w-full'>
                             <button className="border p-1 rounded-sm w-5/12">View</button> 
                             <button className="border p-1 rounded-sm w-5/12">Add Cart</button>
                             <button className="  w-2/12">
