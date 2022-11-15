@@ -11,7 +11,7 @@ const MobileNavbarSingle = ({ data }) => {
 			</div>
 			<div className="collapse-content">
 				{
-					data?.routes?.map((route, index) => <div className='flex justify-between px-3 items-center'>
+					data?.routes?.map((route, index) => <div className='flex py-2 justify-between px-3 items-center'>
 						<p className='capitalize text-gray-700 font-semibold' key={index}>{route.name} </p>
 						<span><ArrowLongRightIcon className='w-4 h-4 text-gray-700 ml-2'></ArrowLongRightIcon></span>
 					</div>)

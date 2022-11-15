@@ -19,7 +19,7 @@ function App() {
         <Route path="/about" element={<li>this is about</li>}></Route>
         <Route path="/contact" element={<li>this is contact</li>}></Route>
       </Routes>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </div>
   );
 }
