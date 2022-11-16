@@ -1,88 +1,113 @@
 [
 	{
 		"id": 1,
+		"route":"arabic",
 		"category": "arabian furniture",
 		"routes": [
 			{
-				"name": "Curtains"
+				"name": "curtains",
+				"route":"curtains"
 			},
 			{
-				"name": "Carpets"
+				"name": "carpets",
+				"route":"carpets"
 			},
 			{
-				"name": "Sofa"
+				"name": "sofa",
+				"route":"sofa"
 			},
 			{
-				"name": "Wallpaper"
+				"name": "wallpaper",
+				"route":"wallpaper"
 			},
 			{
-				"name": "Bed"
+				"name": "bed",
+				"route":"bed"
 			},
 			{
-				"name": "Bed mattress"
+				"name": "bed mattress",
+				"route":"bed_mattress"
 			}
 		]
 	},
 	{
 		"id": 2,
+		"route":"office",
 		"category": "office furniture",
 		"routes": [
 			{
-				"name": "Curtains"
+				"name": "curtains",
+				"route":"curtains"
 			},
 			{
-				"name": "Carpets"
+				"name": "carpets",
+				"route":"carpets"
 			},
 			{
-				"name": "Sofa"
+				"name": "sofa",
+				"route":"sofa"
 			},
 			{
-				"name": "Wallpaper"
+				"name": "wallpaper",
+				"route":"wallpaper"
 			},
 			{
-				"name": "Bed"
+				"name": "bed",
+				"route":"bed"
 			},
 			{
-				"name": "Bed mattress"
+				"name": "bed mattress",
+				"route":"bed_mattress"
 			}
 		]
 	},
 	{
 		"id": 3,
+		"route":"homes",
 		"category": "home furniture",
 		"routes": [
 			{
-				"name": "Curtains"
+				"name": "curtains",
+				"route":"curtains"
 			},
 			{
-				"name": "Carpets"
+				"name": "carpets",
+				"route":"carpets"
 			},
 			{
-				"name": "Sofa"
+				"name": "sofa",
+				"route":"sofa"
 			},
 			{
-				"name": "Wallpaper"
+				"name": "wallpaper",
+				"route":"wallpaper"
 			},
 			{
-				"name": "Bed"
+				"name": "bed",
+				"route":"bed"
 			},
 			{
-				"name": "Bed mattress"
+				"name": "bed mattress",
+				"route":"bed_mattress"
 			}
 		]
 	},
 	{
 		"id": 4,
+		"route":"services",
 		"category": "services",
 		"routes": [
 			{
-				"name": "Wall painting"
+				"name": "Wall painting",
+				"route":"wall_painting"
 			},
 			{
-				"name": "Cabinets design"
+				"name": "Cabinets design",
+				"route":"cabinets_design"
 			},
 			{
-				"name": "gypsum design"
+				"name": "gypsum design",
+				"route":"gypsum_design"
 			}
 		]
 	}

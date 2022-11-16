@@ -47,7 +47,7 @@ const HeaderBottom = () => {
         ]
     };
     return (
-        <div id='headerBottomSliderButton' className="bg-gray-400 p-3 w-full">
+        <div id='headerBottomSliderButton' className="bg-gray-400 lg:h-12 p-3 w-full">
             <Slider {...settings} className="">
                 <div>
                     <div className="text-white text-sm flex items-center justify-center gap-8">

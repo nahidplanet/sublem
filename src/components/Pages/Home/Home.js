@@ -1,18 +1,18 @@
 import React from 'react';
-import HomeCategory from './HomeCategory';
-import HomeServices from './HomeServices';
+import Footer from '../../Footer/Footer';
+import Header from '../../Header/Header';
+import Categories from './Categories';
 import MainSlider from './MainSlider';
-import OfficeCategory from './OfficeCategory';
 import ProductSlider from './ProductSlider';
 
 const Home = () => {
     return (
         <div>
+            <Header></Header>
             <MainSlider></MainSlider>
             <ProductSlider></ProductSlider>
-            <HomeCategory></HomeCategory>
-            <OfficeCategory></OfficeCategory>
-            <HomeServices></HomeServices>
+            <Categories></Categories> 
+            <Footer></Footer>
         </div>
     );
 };

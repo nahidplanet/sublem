@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import visa from '../../../src/assets/footer/visa.jpg'
 import master from '../../../src/assets/footer/master.png'
 import { CheckIcon } from '@heroicons/react/24/solid';
@@ -10,13 +10,23 @@ import instagram from "../../assets/icon/instagram.svg";
 import youtube from "../../assets/icon/youtube.svg";
 import linkedin from "../../assets/icon/linkedin.svg";
 import whatsapp from "../../assets/icon/whatsapp.svg";
+import FooterListMobile from './FooterListMobile';
+import FooterListMain from './FooterListMain';
 
 const Footer = () => {
+
+    const [list, setList] = useState([]);
+    useEffect(() => {
+        fetch('footerlist.json')
+            .then(res => res.json())
+            .then(data => setList(data))
+    }, [])
+
     let date = new Date();
     date = date.getFullYear();
 
     return (
-        <div className='p-5'>
+        <div className=''>
             {/* footer top  */}
 
 
@@ -36,79 +46,55 @@ const Footer = () => {
 
 
             {/* footer  */}
-            <div className='text-gray-800 grid grid-cols-1 justify-center md:grid-cols-2 lg:grid-cols-5 gap-5'>
 
-                <div className="mx-auto">
-                    <div className='flex justify-center items-center flex-wrap gap-5 '>
-                        <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
-                            <img className='w-full h-full mx-auto' src={facebook} alt="facebook" />
-                        </div>
-                        <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
-                            <img className='w-full h-full mx-auto' src={twitter} alt="facebook" />
-                        </div>
-                        <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
-                            <img className='w-full h-full mx-auto' src={youtube} alt="facebook" />
-                        </div>
-                        <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
-                            <img className='w-full h-full mx-auto' src={whatsapp} alt="facebook" />
-                        </div>
-                        <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
-                            <img className='w-full h-full mx-auto' src={linkedin} alt="facebook" />
-                        </div>
-                        <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
-                            <img className='w-full h-full mx-auto' src={instagram} alt="facebook" />
-                        </div>
+            <div className=' text-gray-800 flex justify-between flex-col lg:flex-row gap-3 w-full'>
+                <div className="grid lg:grid-cols-3 grid-cols-6 lg:w-3/12 p-5 ">
+                    <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
+                        <img className='w-full h-full mx-auto' src={facebook} alt="facebook" />
+                    </div>
+                    <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
+                        <img className='w-full h-full mx-auto' src={twitter} alt="facebook" />
+                    </div>
+                    <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
+                        <img className='w-full h-full mx-auto' src={youtube} alt="facebook" />
+                    </div>
+
+                    <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
+                        <img className='w-full h-full mx-auto' src={whatsapp} alt="facebook" />
+                    </div>
+                    <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
+                        <img className='w-full h-full mx-auto' src={linkedin} alt="facebook" />
+                    </div>
+                    <div className='w-10 h-10 rounded-full p-2 hover:bg-gray-200 cursor-pointer  border '>
+                        <img className='w-full h-full mx-auto' src={instagram} alt="facebook" />
                     </div>
                 </div>
-                <div className="mx-auto information">
-                    <h4 className='capitalize font-semibold text-gray-700'>information</h4>
-                    <div>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
+                {/* showing in mobile device */}
+                <div className='lg:hidden'>
+                    {list.map(item => <FooterListMobile key={item.id} data={item}></FooterListMobile>)}
+                </div>
+                {/* showing in mobile device */}
+
+                {/* showing in pc device */}
+                <div className='hidden lg:block lg:w-9/12 '>
+                    <div className='grid grid-cols-4'>
+                        {list.map(item => <FooterListMain key={item.id} data={item}> </FooterListMain>)}
                     </div>
                 </div>
-                <div className="mx-auto the company">
-                    <h4 className='capitalize font-semibold text-gray-700'>the company</h4>
-                    <div>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                    </div>
-                </div>
-                <div className="mx-auto shop by room">
-                    <h4 className='capitalize font-semibold text-gray-700'>shop by room</h4>
-                    <div>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                    </div>
-                </div>
-                <div className="mx-auto department">
-                    <h4 className='capitalize font-semibold text-gray-700'>department</h4>
-                    <div>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                        <p>Lorem ipsum dolor sit</p>
-                    </div>
-                </div>
+                {/* showing in pc device */}
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
             {/* footer bottom */}
             <div className="divider mx-0 h-[1px] bg-gray-400 font-bold my-5"></div>
             <div className=' pb-5 '>
