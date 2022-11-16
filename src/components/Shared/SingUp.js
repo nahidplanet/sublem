@@ -4,7 +4,7 @@ import SocialLogin from './SocialLogin';
 
 const SingUp = () => {
 	return (
-		<div className='flex bg-gray-50 justify-center items-center  w-full min-h-screen p-20'>
+		<div className='flex bg-gray-50 justify-center items-center  w-full min-h-screen lg:p-20'>
 			<div className='bg-white lg:w-10/12 md:10/12 w-10/12 rounded-lg shadow-sm border px-5 py-3' >
 				<h1 className='capitalize text-center text-gray-800 font-semibold text-3xl mb-5'>Sing Up</h1>
 				<form action="" method="get" className='w-full'>
