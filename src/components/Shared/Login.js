@@ -1,12 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebaseAuth/firebase.init';
+import Loader from './Loader';
 
 const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
+	let navigate = useNavigate();
+	let location = useLocation();
+	let handleError;
+	const [
+		signInWithEmailAndPassword,
+		user,
+		loading,
+		error,
+	] = useSignInWithEmailAndPassword(auth);
+
+
+	let from = location.state?.from?.pathname || "/";
+
+	if (loading) {
+		return <Loader></Loader>
+	}
+	if (error) {
+		handleError = <p className='text-red-500'>{error.message}</p>
+	}
+	if (user) {
+		 navigate(from, { replace: true });
+	}
+
+
+
+
+
+
+
 	const formData = (data) => {
-		console.lgo(data)
+		signInWithEmailAndPassword(data.email, data.password)
 	}
 
 
@@ -22,7 +54,7 @@ const Login = () => {
 							<label className="label">
 								<span className="label-text text-gray-900 capitalize text-md font-medium">your email</span>
 							</label>
-							<input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/  })} type="text" placeholder="Email..." className="bg-white input input-bordered w-full " />
+							<input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} type="text" placeholder="Email..." className="bg-white input input-bordered w-full " />
 							<label className="label">
 								{errors.email?.type === "required" && <span className="label-text-alt capitalize text-red-600">Email is required</span>}
 								{errors.email?.type === "pattern" && <span className="label-text-alt capitalize text-red-600">please provide a valid Email</span>}
@@ -34,12 +66,13 @@ const Login = () => {
 							</label>
 							<input {...register("password", { required: true, minLength: 6 })} type="password" placeholder="********" className="bg-white input input-bordered w-full " />
 							<label className="label">
-							{errors.password?.type === "required" && <span className="label-text-alt capitalize text-red-600">password is required</span>}
-							{errors.password?.type === "minLength" && <span className="label-text-alt capitalize text-red-600">at lest 6 characters</span>}
+								{errors.password?.type === "required" && <span className="label-text-alt capitalize text-red-600">password is required</span>}
+								{errors.password?.type === "minLength" && <span className="label-text-alt capitalize text-red-600">at lest 6 characters</span>}
 
 							</label>
 						</div>
-						<p className='text-gray-800 text-sm ml-1 my-2 capitalize'>new to sublem? <Link to={"/singUp"} className="text-green-500">Create an account</Link> </p>
+						{handleError && handleError}
+						<p className='text-gray-800 text-sm ml-1 my-2 capitalize'>new to sublem? <Link to={"/singup"} className="text-green-500">Create an account</Link> </p>
 						<div className='lg:text-end text:start my-3'>
 							<input type="submit" value=" login" className="btn bg-gray-50 text-gray-900 hover:bg-gray-200 border-gray-200" />
 						</div>

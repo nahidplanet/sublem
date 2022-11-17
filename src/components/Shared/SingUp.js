@@ -1,13 +1,50 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from '../../firebaseAuth/firebase.init';
+import Loader from './Loader';
 
 
 const SingUp = () => {
+	const  navigate = useNavigate()
 	const { register, handleSubmit, formState: { errors } } = useForm();
-	const formData = (data) => {
-		console.log(data)
+	let handleError ;
+	const [
+		createUserWithEmailAndPassword,
+		user,
+		loading,
+		error,
+	  ] = useCreateUserWithEmailAndPassword(auth);
+	  const [updateProfile, updating, uError] = useUpdateProfile(auth);
+
+if (loading || updating) {
+	return <Loader></Loader>
+}
+if (error || uError) {
+	handleError = <p className='text-red-500'>{error.message}</p>
+}
+if (user) {
+	navigate("/")
+}
+
+
+
+
+	const formData = async (data) => {
+		const userData={
+			name:data.name,
+			email:data.email,
+			password:data.password,
+			contactNumber:data.contactNumber,
+			addressFirst:data.addressFirst,
+			addressSecond:data.addressSecond
+		}
+
+		await createUserWithEmailAndPassword(data.email,data.password);
+		await updateProfile({displayName: data.name})
+		
 	}
 	return (
 		<div className='flex bg-gray-50 justify-center items-center  w-full min-h-screen lg:p-20'>

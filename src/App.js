@@ -16,6 +16,7 @@ import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import Login from "./components/Shared/Login";
 import SingUp from "./components/Shared/SingUp";
 import SingleProduct from "./components/Pages/others/SingleProduct";
+import Loader from "./components/Shared/Loader";
 
 function App() {
 
@@ -27,15 +28,13 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/singUp" element={<SingUp></SingUp>}></Route>
+        <Route path="/singup" element={<SingUp></SingUp>}></Route>
         <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
         {/* categories routes */}
         <Route path="arabic" element={<ArabicFurniture></ArabicFurniture>}></Route>
         <Route path="office" element={<OfficeFurniture></OfficeFurniture>}></Route>
         <Route path="homes" element={<HomeFurniture></HomeFurniture>}></Route>
         <Route path="services" element={<OurService></OurService>}></Route>
-
-
         {/* wrong route  */}
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
