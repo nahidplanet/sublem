@@ -15,6 +15,7 @@ import OurService from './components/Pages/OurService/OurService'
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import Login from "./components/Shared/Login";
 import SingUp from "./components/Shared/SingUp";
+import SingleProduct from "./components/Pages/others/SingleProduct";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/singUp" element={<SingUp></SingUp>}></Route>
+        <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
         {/* categories routes */}
         <Route path="arabic" element={<ArabicFurniture></ArabicFurniture>}></Route>
         <Route path="office" element={<OfficeFurniture></OfficeFurniture>}></Route>

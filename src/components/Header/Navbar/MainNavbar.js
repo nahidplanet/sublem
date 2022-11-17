@@ -14,7 +14,7 @@ const MainNavbar = ({ data }) => {
                 </div>
                 <ul tabIndex={0} className="dropdown-content capitalize menu p-2 bg-white w-52 absolute border-none rounded-none shadow-none">
                     {
-                        data?.routes.map((route, index) => <li><Link key={index} to={`/${data.route}/${route.route}`}>{route.name}</Link></li>)
+                        data?.routes.map((route, index) => <li key={index}><Link  to={`/${data.route}/${route.route}`}>{route.name}</Link></li>)
                     }
                 </ul>
             </div>

@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
+import { useForm } from "react-hook-form";
+
 
 const SingUp = () => {
+	const { register, handleSubmit, formState: { errors } } = useForm();
+	const formData = (data) => {
+		console.log(data)
+	}
 	return (
 		<div className='flex bg-gray-50 justify-center items-center  w-full min-h-screen lg:p-20'>
 			<div className='bg-white lg:w-10/12 md:10/12 w-10/12 rounded-lg shadow-sm border px-5 py-3' >
 				<h1 className='capitalize text-center text-gray-800 font-semibold text-3xl mb-5'>Sing Up</h1>
-				<form action="" method="get" className='w-full'>
+				<form onSubmit={handleSubmit(formData)} className='w-full'>
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-5 p-5 justify-around'>
 						<div className=' w-full' >
 							<div className='flex flex-col justify-center'>
@@ -15,36 +21,39 @@ const SingUp = () => {
 									<label className="label">
 										<span className="label-text text-gray-900 capitalize text-md font-medium">your name</span>
 									</label>
-									<input type="text" placeholder="Full Name" className="bg-white input input-bordered max-w-sm text-gray-800" />
+									<input {...register("name", { required: true, minLength: 3 })} type="text" placeholder="Full Name" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-										<span className="label-text-alt capitalize text-red-600">password wrong!</span>
+										{errors.name?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required</span>}
+										{errors.name?.type === "minLength" && <span className="label-text-alt capitalize text-red-600">at lest 6 characters</span>}
 									</label>
 								</div>
 								<div className="form-control ">
 									<label className="label">
 										<span className="label-text text-gray-900 capitalize text-md font-medium">your email</span>
 									</label>
-									<input type="text" placeholder="Your Email" className="bg-white input input-bordered max-w-sm text-gray-800" />
+									<input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} type="text" placeholder="Your Email" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-										<span className="label-text-alt capitalize text-red-600">password wrong!</span>
+										{errors.email?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
+										{errors.email?.type === "pattern" && <span className="label-text-alt capitalize text-red-600">please provide a valid Email</span>}
 									</label>
 								</div>
 								<div className="form-control ">
 									<label className="label">
 										<span className="label-text text-gray-900 capitalize text-md font-medium">your password</span>
 									</label>
-									<input type="password" placeholder="********" className="bg-white input input-bordered max-w-sm text-gray-800" />
+									<input {...register("password", { required: true, minLength: 6 })} type="password" placeholder="********" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-										<span className="label-text-alt capitalize text-red-600">password wrong!</span>
+										{errors.password?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
+										{errors.password?.type === "minLength" && <span className="label-text-alt capitalize text-red-600">at lest 6 characters</span>}
 									</label>
 								</div>
 								<div className="form-control ">
 									<label className="label">
 										<span className="label-text text-gray-900 capitalize text-md font-medium">contact number</span>
 									</label>
-									<input type="number" placeholder="Contact Number" className="bg-white input input-bordered max-w-sm text-gray-800" />
+									<input {...register("contactNumber", { required: true})} type="number" placeholder="Contact Number" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-										<span className="label-text-alt capitalize text-red-600">password wrong!</span>
+										{errors.contactNumber?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
 									</label>
 								</div>
 							</div>
@@ -56,18 +65,18 @@ const SingUp = () => {
 									<label className="label">
 										<span className="label-text text-gray-900 capitalize text-md font-medium">your address 1</span>
 									</label>
-									<input type="text" placeholder="Your Address" className="bg-white input input-bordered max-w-sm text-gray-800" />
+									<input {...register("addressFirst", { required: true })} type="text" placeholder="Your Address" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-										<span className="label-text-alt capitalize text-red-600">password wrong!</span>
+									{errors.addressFirst?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required </span>}
 									</label>
 								</div>
 								<div className="form-control ">
 									<label className="label">
 										<span className="label-text text-gray-900 capitalize text-md font-medium">your address 2</span>
 									</label>
-									<input type="text" placeholder="Your Address" className="bg-white input input-bordered max-w-sm text-gray-800" />
+									<input {...register("addressSecond", { required: true })} type="text" placeholder="Your Address" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-										<span className="label-text-alt capitalize text-red-600">password wrong!</span>
+									{errors.addressSecond?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required </span>}
 									</label>
 								</div>
 								<SocialLogin></SocialLogin>
