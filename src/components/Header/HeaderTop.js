@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeartIcon, PhoneIcon, ShoppingBagIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { Link } from 'react-router-dom';
 const HeaderTop = () => {
     return (
         <div className='hidden lg:block text-white text-sm capitalize'>
@@ -14,8 +15,24 @@ const HeaderTop = () => {
                     </p>
                 </div>
                 <div className='flex items-center justify-start'>
-                    <UserCircleIcon className='w-5 h-5 mr-1 text-normal'></UserCircleIcon>
-                    <p>profile</p>
+                    <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className=" cursor-pointer pr-2">
+                            <div className="indicator bg-none">
+                                <p className='text-semibold capitalize'>profile</p>
+                            </div>
+                        </label>
+                        <div tabIndex={0} className="mt-3 rounded-md card card-compact dropdown-content w-52 bg-gray-100 shadow">
+                            <div className="card-body text-gray-800">
+                                <ul className="menu  w-full">
+                                    <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/profile"}>Account</Link></li>
+                                    <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/wishlist"}>Wishlist</Link></li>
+                                    <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/save-cart"}>Save Cart</Link></li>
+                                    <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/order-history"}>Order History</Link></li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <div className="dropdown dropdown-end">

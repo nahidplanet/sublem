@@ -3,27 +3,32 @@ import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
 
 
-const Dashboard = () => {
+const Developer = () => {
 	const dashBoardMenuData = [
 		{
 			id: 1,
-			path: "profile",
-			name: "Profile"
+			path: "add-product",
+			name: "Add Product"
 		},
 		{
 			id: 2,
-			path: "wishlist",
-			name: "Wishlist"
+			path: "all-product",
+			name: "All Product"
 		},
 		{
 			id: 3,
-			path: "order-history",
-			name: "Order History"
+			path: "orders",
+			name: "Orders"
 		},
 		{
 			id: 4,
-			path: "save-cart",
-			name: "Save Cart"
+			path: "delivered",
+			name: "Delivered"
+		},
+		{
+			id: 5,
+			path: "role",
+			name: "Role"
 		},
 	]
 	return (
@@ -40,7 +45,7 @@ const Dashboard = () => {
 							</label>
 						</div>
 						<div className="flex-1 px-2 mx-2 text-gray-900">
-							<Link to={"/"}>Home</Link>
+							<Link to={"/developer"}>Home</Link>
 						</div>
 						<div className="flex-none hidden lg:block">
 							<ul className="menu menu-horizontal">
@@ -69,4 +74,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default Developer;
