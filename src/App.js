@@ -16,7 +16,7 @@ import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import Login from "./components/Shared/Login";
 import SingUp from "./components/Shared/SingUp";
 import SingleProduct from "./components/Pages/others/SingleProduct";
-import Loader from "./components/Shared/Loader";
+
 import Profile from "./components/Pages/Dashboard/Profile";
 import WishList from "./components/Pages/Dashboard/WishList";
 import OrderHistory from "./components/Pages/Dashboard/OrderHistory";
