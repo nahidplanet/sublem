@@ -56,7 +56,7 @@ const Developer = () => {
 						</div>
 					</div>
 					{/* <!-- Page content here --> */}
-					<div className=" px-14 py-10">
+					<div className=" lg:px-14 px-2 py-4 lg:py-10">
 						<Outlet></Outlet>
 					</div>
 				</div>

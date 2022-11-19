@@ -56,7 +56,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/singup" element={<SingUp></SingUp>}></Route>
-        <Route path="/singleproduct" element={<SingleProduct></SingleProduct>}></Route>
+        <Route path="/single-product" element={<SingleProduct></SingleProduct>}></Route>
         {/* categories routes */}
         <Route path="arabic" element={<ArabicFurniture></ArabicFurniture>}></Route>
         <Route path="office" element={<OfficeFurniture></OfficeFurniture>}></Route>
