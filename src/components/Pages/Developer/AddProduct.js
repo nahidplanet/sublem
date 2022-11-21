@@ -1,22 +1,61 @@
-import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
 
 const AddProduct = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
-	const formData = (data) => {
+	// const [product,setProduct] = useState({})
+	// <
+	const onSubmit = async (products) => {
+		let formData = new FormData();
 
-		console.log(data);
+
+		const img = products.productImage;
+		Object.keys(img).forEach(function (key, index) {
+
+			formData.append("productImage", img[key])
+			// console.log("this is single image", img[key]);
+		});
+
+		// for (const singleImage in img) {
+		// 	const newImage = img[singleImage];
+		// 	console.log("this is single image",newImage);
+		// }
+
+
+		// console.log(typeof img);
+		// await img.map((singleImage => formData.append("productImages", singleImage)));
+
+
+
+		
+		formData.append("name", products.name);
+		formData.append("code", products.code);
+		formData.append("sortDescription", products.sortDescription);
+		formData.append("longDescription", products.longDescription);
+		formData.append("regularPrice", products.regularPrice);
+		formData.append("newPrice", products.newPrice);
+		formData.append("selectCategory", products.selectCategory);
+		formData.append("productType", products.productType);
+
+		const requestOptions = {
+			method: 'POST',
+			body: formData
+		};
+		fetch('http://localhost:5000/api/v1/product', requestOptions)
+			.then(response => response.json())
+			.then(data => console.log(data))
+
+
+
 	}
+
 	return (
 		<div className='flex justify-center w-full min-h-screen '>
 			<div className='bg-white lg:w-8/12 md:10/12 w-10/12 rounded-lg shadow-sm border ' >
 				<h1 className='capitalize text-center text-gray-800 font-semibold text-3xl my-5'>add product</h1>
-				<form onSubmit={handleSubmit(formData)} className='w-full'>
+				<form onSubmit={handleSubmit(onSubmit)} className='w-full' encType="multipart/form-data">
 					<div className='grid grid-cols-1 gap-5 p-5 justify-around'>
 						<div className=' w-full' >
 							<div className='flex flex-col'>
-
 								<div className="form-control">
 									<label className="label">
 										<span className="label-text text-gray-900 capitalize text-md font-medium">your name</span>
@@ -129,9 +168,9 @@ const AddProduct = () => {
 									<select
 										className="bg-white input input-bordered w-full text-gray-800"
 										{...register("productType", { required: true, })}>
-										<option value="female">sofa</option>
-										<option value="male">bed</option>
-										<option value="other">carpet</option>
+										<option value="sofa">sofa</option>
+										<option value="bed">bed</option>
+										<option value="carpet">carpet</option>
 									</select>
 									<label className="label">
 										{errors.productType?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
@@ -144,9 +183,9 @@ const AddProduct = () => {
 									</label>
 									<input
 										multiple
+										name='productPic'
 										{...register("productImage", { required: true })}
 										type="file"
-										placeholder="Product Image"
 										className="bg-white input input-bordered w-full text-gray-800 " />
 									<label className="label">
 										{errors.productImage?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
