@@ -1,7 +1,9 @@
 
 // carosel css 
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Route, Routes } from 'react-router';
 import './App.css';
@@ -33,7 +35,7 @@ function App() {
 
   return (
     <div className="App bg-white">
-    
+
       <Routes>
         {/* default route  */}
         <Route path="/" element={<Home></Home>}></Route>
@@ -46,6 +48,8 @@ function App() {
           <Route path="delivered" element={<Delivered></Delivered>}></Route>
           <Route path="role" element={<Role></Role>}></Route>
         </Route>
+
+        
         {/* user dashboard  */}
         <Route path="/dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<Profile></Profile>}></Route>
@@ -57,6 +61,8 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/singup" element={<SingUp></SingUp>}></Route>
         <Route path="/single-product" element={<SingleProduct></SingleProduct>}></Route>
+
+
         {/* categories routes */}
         <Route path="arabic" element={<ArabicFurniture></ArabicFurniture>}></Route>
         <Route path="office" element={<OfficeFurniture></OfficeFurniture>}></Route>
@@ -65,6 +71,7 @@ function App() {
         {/* wrong route  */}
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

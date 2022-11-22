@@ -15,8 +15,8 @@ const MobileNavbarSingle = ({ data }) => {
 			<div className="collapse-content ml-5">
 				{
 					data?.routes?.map((route, index) =>
-						<Link to={`/${data.route}/${route.route}`} className='flex hover:shadow-sm gap-5 py-2 justify-between px-3 items-center hover:bg-gray-100'>
-							<p className='capitalize text-gray-700 font-normal' key={index}>{route.name} </p>
+						<Link to={`/${data.route}/${route.route}`} key={index} className='flex hover:shadow-sm gap-5 py-2 justify-between px-3 items-center hover:bg-gray-100'>
+							<p className='capitalize text-gray-700 font-normal' >{route.name} </p>
 							<span><ArrowLongRightIcon className='w-4 h-4 text-gray-700 ml-2'></ArrowLongRightIcon></span>
 						</Link>
 					)

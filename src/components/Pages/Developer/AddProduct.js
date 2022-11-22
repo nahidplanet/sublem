@@ -1,32 +1,17 @@
 import { useForm } from "react-hook-form";
-
+import { toast } from 'react-toastify';
 const AddProduct = () => {
-	const { register, handleSubmit, formState: { errors } } = useForm();
-	// const [product,setProduct] = useState({})
-	// <
+	const { register, handleSubmit, formState: { errors },reset } = useForm();
+
 	const onSubmit = async (products) => {
 		let formData = new FormData();
-
 
 		const img = products.productImage;
 		Object.keys(img).forEach(function (key, index) {
 
-			formData.append("productImage", img[key])
-			// console.log("this is single image", img[key]);
+		formData.append("productImage", img[key])
 		});
 
-		// for (const singleImage in img) {
-		// 	const newImage = img[singleImage];
-		// 	console.log("this is single image",newImage);
-		// }
-
-
-		// console.log(typeof img);
-		// await img.map((singleImage => formData.append("productImages", singleImage)));
-
-
-
-		
 		formData.append("name", products.name);
 		formData.append("code", products.code);
 		formData.append("sortDescription", products.sortDescription);
@@ -42,9 +27,16 @@ const AddProduct = () => {
 		};
 		fetch('http://localhost:5000/api/v1/product', requestOptions)
 			.then(response => response.json())
-			.then(data => console.log(data))
-
-
+			.then(data => {
+				console.log(data);
+				if (!data.status) {
+					toast.error("product upload failed")
+				}else{
+					toast.success("product upload successful");
+					reset();
+					
+				}
+			})
 
 	}
 
@@ -152,9 +144,9 @@ const AddProduct = () => {
 									<select
 										className="bg-white input input-bordered w-full text-gray-800"
 										{...register("selectCategory", { required: true, })}>
-										<option value="female">arabic</option>
-										<option value="male">Home</option>
-										<option value="other">Furniture</option>
+										<option value="arabic">Arabic Furniture</option>
+										<option value="home">Home Furniture</option>
+										<option value="Office">Office Furniture</option>
 									</select>
 									<label className="label">
 										{errors.selectCategory?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
@@ -168,9 +160,12 @@ const AddProduct = () => {
 									<select
 										className="bg-white input input-bordered w-full text-gray-800"
 										{...register("productType", { required: true, })}>
-										<option value="sofa">sofa</option>
-										<option value="bed">bed</option>
-										<option value="carpet">carpet</option>
+										<option value="sofa">Sofa</option>
+										<option value="bed">Bed</option>
+										<option value="carpet">Carpet</option>
+										<option value="bed_mattress">Bed Mattress</option>
+										<option value="curtain">Curtain</option>
+										<option value="wallpaper">Wallpaper</option>
 									</select>
 									<label className="label">
 										{errors.productType?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}

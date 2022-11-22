@@ -16,7 +16,6 @@ const MainMenu = () => {
                 setMenuData(rest);
             })
     }, [])
-    console.log(menuData);
 
     return (
         <div className='hidden lg:block h-22 lg:py-2' >
