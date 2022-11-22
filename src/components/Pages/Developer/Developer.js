@@ -33,7 +33,6 @@ const Developer = () => {
 	]
 	return (
 		<>
-			{/* <Header></Header> */}
 			<div className="drawer ">
 				<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content flex flex-col">

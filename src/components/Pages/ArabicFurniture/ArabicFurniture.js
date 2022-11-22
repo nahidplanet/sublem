@@ -10,7 +10,7 @@ import axios from 'axios';
 // 		  )
 const ArabicFurniture = () => {
 	const { isLoading, error, data } = useQuery(
-		['arabicFurniture'],()=> axios.get('http://localhost:5000/api/v1/product')
+		['arabicFurniture'],()=> axios.get('http://localhost:5000/api/v1/product?category=arabic')
 	)
 	if (error) {
 		console.log(error);
@@ -21,7 +21,7 @@ const ArabicFurniture = () => {
 
 	return (
 		<div className='min-h-screen'>
-			<Header></Header>
+		
 			<div>
 				<h1 className='capitalize text-3xl text-gray-900 text-center my-5 font-semibold'>Arabic Furniture</h1>
 				<p className='text-md px-10 text-gray-900 my-3 text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum, ipsum eum expedita rem repudiandae veniam aliquam cumque unde itaque quasi cupiditate fugiat maiores laborum quod voluptatum repellat suscipit! Pariatur dolores necessitatibus totam illum quae aut sint accusamus enim. Eum quo corrupti perspiciatis incidunt officia quas a expedita at maxime!</p>

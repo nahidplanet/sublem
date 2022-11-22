@@ -30,15 +30,19 @@ import Orders from "./components/Pages/Developer/Orders";
 import Delivered from "./components/Pages/Developer/Delivered";
 import RunWay from "./components/Pages/Developer/RunWay";
 import Role from "./components/Pages/Developer/Role";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Abc from "./components/Pages/others/Abc";
 
 function App() {
 
   return (
     <div className="App bg-white">
-
+      <Header></Header>
       <Routes>
         {/* default route  */}
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/abc" element={<Abc></Abc>}></Route>
         {/* for admin */}
         <Route path="/developer" element={<Developer></Developer>}>
           <Route index element={<RunWay></RunWay>}></Route>
@@ -49,7 +53,7 @@ function App() {
           <Route path="role" element={<Role></Role>}></Route>
         </Route>
 
-        
+
         {/* user dashboard  */}
         <Route path="/dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<Profile></Profile>}></Route>
@@ -65,12 +69,14 @@ function App() {
 
         {/* categories routes */}
         <Route path="arabic" element={<ArabicFurniture></ArabicFurniture>}></Route>
+        <Route path="arabic/:id" element={<SingleProduct></SingleProduct>}></Route>
         <Route path="office" element={<OfficeFurniture></OfficeFurniture>}></Route>
         <Route path="homes" element={<HomeFurniture></HomeFurniture>}></Route>
         <Route path="services" element={<OurService></OurService>}></Route>
         {/* wrong route  */}
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
   );

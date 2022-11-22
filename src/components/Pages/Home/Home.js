@@ -8,11 +8,11 @@ import ProductSlider from './ProductSlider';
 const Home = () => {
     return (
         <div>
-            <Header></Header>
+            {/* <Header></Header> */}
             <MainSlider></MainSlider>
             <ProductSlider></ProductSlider>
             <Categories></Categories> 
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 };
