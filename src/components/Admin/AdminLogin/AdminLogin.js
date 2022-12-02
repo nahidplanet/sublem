@@ -1,50 +1,37 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import SocialLogin from './SocialLogin';
-import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import auth from '../../firebaseAuth/firebase.init';
-import Loader from './Loader';
-import  './Login.css'
-import axios from 'axios';
-import { toast } from 'react-toastify';
 
-const Login = () => {
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import "./AdminLogin.css"
+import {  useLocation, useNavigate } from 'react-router';
+
+const AdminLogin = () => {
+	const location = useLocation()
+	const navigate = useNavigate()
+	let from = location.state?.from?.pathname || "/";
 	const [open, setOpen] = useState(false)
 
 	const emailRef = useRef('');
 	const passwordRef = useRef('')
-	// const [fetchUser, setFetchUser] = useState({})
-	// const [fetchLoading, setfetchLoading] = useState(false)
-	// const [fetchError, setfetchError] = useState("")
-	// const { register, handleSubmit, formState: { errors } } = useForm();
-	let navigate = useNavigate();
-	let location = useLocation();
 
-
-
-	let from = location.state?.from?.pathname || "/";
-
-
-	// if (fetchLoading) {
-	// 	return <Loader></Loader>
-	// }
-
-	const handleAdminLogin = async (e) => {
+	const handleAdminLogin = (e) => {
 		e.preventDefault()
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 		const data = { email, password }
-		axios.post('http://localhost:5000/api/v1/login-user',data).then(res => {
-			console.log("response is",res);
+		axios.post('http://localhost:5000/api/v1/developer/login/',data).then(res => {
+			console.log(res);
 			if (res.data.status) {
+				console.log();
 				localStorage.setItem("accessToken", res.data.accessToken)
 				toast.success("login success");
-				navigate(from, { replace: true });
+				navigate('/developer');
 			}
 		}).catch(error => {
 			toast.error(error.response.data.message);
 		})
+
 	}
 	return (
 		<div className="container">
@@ -97,4 +84,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default AdminLogin;

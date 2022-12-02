@@ -13,7 +13,7 @@ const Loader = () => {
 
 
 	return (
-		<div style={{zIndex:"1",opacity:"0.5"}} className='z-10 w-full h-screen flex justify-center items-center bg-slate-400 absolute top-0 left-0 bg-gray-400'>
+		<div style={{zIndex:"15",opacity:"0.5"}} className='z-10 w-full h-screen flex justify-center items-center bg-slate-400 absolute top-0 left-0 bg-gray-400'>
 			<FadeLoader
 			className='index z-20'
 			color={"#fff"}
@@ -24,9 +24,6 @@ const Loader = () => {
 			data-testid="loader"
 		  
 			/>
-
-
-			
 		</div>
 	);
 };

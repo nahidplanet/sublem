@@ -23,45 +23,47 @@ import Profile from "./components/Pages/Dashboard/Profile";
 import WishList from "./components/Pages/Dashboard/WishList";
 import OrderHistory from "./components/Pages/Dashboard/OrderHistory";
 import SaveCart from "./components/Pages/Dashboard/SaveCart";
-import Developer from "./components/Pages/Developer/Developer";
-import AddProduct from "./components/Pages/Developer/AddProduct";
-import AllProduct from "./components/Pages/Developer/AllProduct";
-import Orders from "./components/Pages/Developer/Orders";
-import Delivered from "./components/Pages/Developer/Delivered";
-import RunWay from "./components/Pages/Developer/RunWay";
-import Role from "./components/Pages/Developer/Role";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Abc from "./components/Pages/others/Abc";
+
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import AdminIndex from "./components/Admin/AdminIndex";
+import AddProduct from "./components/Admin/AddProduct/AddProduct";
+import AllProducts from "./components/Admin/AllProducts/AllProducts";
+import Orders from "./components/Admin/Orders/Orders";
+import Users from "./components/Admin/Users/Users";
+import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
+import RequireAdmin from "./components/Admin/RequireAdmin";
+import RequireAuth from "./components/Shared/RequireAuth";
 
 function App() {
 
   return (
     <div className="App bg-white">
-      <Header></Header>
+      {/* <Header></Header> */}
+
       <Routes>
         {/* default route  */}
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/abc" element={<Abc></Abc>}></Route>
-        {/* for admin */}
-        <Route path="/developer" element={<Developer></Developer>}>
-          <Route index element={<RunWay></RunWay>}></Route>
-          <Route path="add-product" element={<AddProduct></AddProduct>}></Route>
-          <Route path="all-product" element={<AllProduct></AllProduct>}></Route>
-          <Route path="orders" element={<Orders></Orders>}></Route>
-          <Route path="delivered" element={<Delivered></Delivered>}></Route>
-          <Route path="role" element={<Role></Role>}></Route>
+
+        {/* for admin panel  */}
+        <Route path="/developer/login" element={<AdminLogin></AdminLogin>}></Route>
+        <Route path="/developer" element={<RequireAdmin><AdminDashboard></AdminDashboard></RequireAdmin>}>
+          <Route index element={<RequireAdmin><AdminIndex></AdminIndex></RequireAdmin>}></Route>
+          <Route path="add-product" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
+          <Route path="all-product" element={<RequireAdmin><AllProducts></AllProducts></RequireAdmin>}></Route>
+          <Route path="all-order" element={<RequireAdmin><Orders></Orders></RequireAdmin>}></Route>
+          <Route path="all-user" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
         </Route>
 
 
         {/* user dashboard  */}
-        <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-          <Route index element={<Profile></Profile>}></Route>
-          <Route path="profile" element={<Profile></Profile>}></Route>
-          <Route path="wishlist" element={<WishList></WishList>}></Route>
-          <Route path="order-history" element={<OrderHistory></OrderHistory>}></Route>
-          <Route path="save-cart" element={<SaveCart></SaveCart>}></Route>
+        <Route path="/dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
+          <Route index element={<RequireAuth><Profile></Profile></RequireAuth>}></Route>
+          <Route path="profile" element={<RequireAuth><Profile></Profile></RequireAuth>}></Route>
+          <Route path="wishlist" element={<RequireAuth><WishList></WishList></RequireAuth>}></Route>
+          <Route path="order-history" element={<RequireAuth><OrderHistory></OrderHistory></RequireAuth>}></Route>
+          <Route path="save-cart" element={<RequireAuth><SaveCart></SaveCart></RequireAuth>}></Route>
         </Route>
+
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/singup" element={<SingUp></SingUp>}></Route>
         <Route path="/single-product" element={<SingleProduct></SingleProduct>}></Route>
@@ -76,7 +78,7 @@ function App() {
         {/* wrong route  */}
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
       <ToastContainer></ToastContainer>
     </div>
   );

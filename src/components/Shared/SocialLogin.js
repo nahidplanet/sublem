@@ -13,7 +13,7 @@ const SocialLogin = () => {
 	const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
 	const handleSingInWithFacebook = () => { }
-	let from = location.state?.from?.pathname || "/";
+	// let from = location.state?.from?.pathname || "/";
 
 	if (loading) {
 		return <Loader></Loader>
@@ -22,7 +22,7 @@ const SocialLogin = () => {
 		handleError = <p className='text-red-500'>{error.message}</p>
 	}
 	if (user) {
-		navigate(from, { replace: true });
+		// navigate(from, { replace: true });
 	}
 
 	return (

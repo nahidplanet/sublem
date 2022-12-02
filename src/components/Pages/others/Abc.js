@@ -46,20 +46,4 @@ console.log(sliderImage);
 
 export default Abc;
 
-// const Abc = () => {
-// 	return (
-// 		<div>
-			
-// 		</div>
-// 	);
-// };
 
-// export default Abc;
-
-
-
-
-
-
-
-// https://www.youtube.com/watch?v=t6yN_NtTU6Q

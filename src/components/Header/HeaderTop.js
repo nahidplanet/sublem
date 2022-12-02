@@ -1,7 +1,27 @@
 import React from 'react';
-import { HeartIcon, PhoneIcon, ShoppingBagIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { Link } from 'react-router-dom';
+import { HeartIcon, PhoneIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
+import auth from '../../firebaseAuth/firebase.init';
+import Loader from '../Shared/Loader';
 const HeaderTop = () => {
+    // let handleError;
+    // const [user, loading, error] = useAuthState(auth);
+    // const [signOut] = useSignOut(auth);
+    // const navigate = useNavigate()
+    // if (loading ) {
+    //     return <Loader></Loader>
+    // }
+    // if (error ) {
+    //     handleError = <p className='text-red-500'>{error.message}</p>
+
+    // }
+    // if (!user) {
+    //     signOut()
+        // navigate("/login")
+    // }
+    // console.log(user);
+
     return (
         <div className='hidden lg:block text-white text-sm capitalize'>
             <div className='bg-gray-800 h-12 flex justify-end  gap-5 items-center p-4'>
@@ -28,7 +48,11 @@ const HeaderTop = () => {
                                     <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/wishlist"}>Wishlist</Link></li>
                                     <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/save-cart"}>Save Cart</Link></li>
                                     <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/order-history"}>Order History</Link></li>
-                                   
+                                    <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link>onClick={async () => {
+                                        // await signOut(auth)
+                                        // await localStorage.removeItem("accessToken");
+                                    }}</Link></li>
+
                                 </ul>
                             </div>
                         </div>

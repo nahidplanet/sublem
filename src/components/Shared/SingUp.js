@@ -1,50 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebaseAuth/firebase.init';
 import Loader from './Loader';
+import { toast } from 'react-toastify';
 
 
 const SingUp = () => {
-	const  navigate = useNavigate()
-	const { register, handleSubmit, formState: { errors } } = useForm();
-	let handleError ;
+	// const [isLoading, setisLoading] = useState(false)
+	// const [fetchError, getFetchError] = useState("")
+	const navigate = useNavigate()
+	const { register, handleSubmit, formState: { errors }, reset } = useForm();
+	let handleError;
 	const [
 		createUserWithEmailAndPassword,
 		user,
 		loading,
 		error,
-	  ] = useCreateUserWithEmailAndPassword(auth);
-	  const [updateProfile, updating, uError] = useUpdateProfile(auth);
+	] = useCreateUserWithEmailAndPassword(auth);
+	const [updateProfile, updating, uError] = useUpdateProfile(auth);
 
-if (loading || updating) {
-	return <Loader></Loader>
-}
-if (error || uError) {
-	handleError = <p className='text-red-500'>{error.message}</p>
-}
-if (user) {
-	navigate("/")
-}
+	// const { isLoading, error: reactQueryError, data: userDetails } = useQuery(
+	// 	['create_user'], () => axios.post('http:localhost:5000/api/v1/user-create')
+	// )
+
+	// if (loading || updating || isLoading) {
+	// 	return <Loader></Loader>
+	// }
+	// if (error || uError || fetchError) {
+	// 	handleError = <p className='text-red-500'>{error.message || uError.message || fetchError.message}</p>
+	// }
+	// if (user) {
+	// 	// navigate("/")
+	// }
 
 
 
+	// 'http:localhost:5000/api/v1/user-create'
 
 	const formData = async (data) => {
-		const userData={
-			name:data.name,
-			email:data.email,
-			password:data.password,
-			contactNumber:data.contactNumber,
-			addressFirst:data.addressFirst,
-			addressSecond:data.addressSecond
+		// setisLoading(true)
+		const userData = {
+			fullName: data.name,
+			username: data.username,
+			email: data.email,
+			password: data.password,
+			confirmPassword: data.confirmPassword,
+			mobileNumber: data.contactNumber,
+			addressOne: data.addressFirst,
+			addressTwo: data.addressSecond
 		}
 
-		await createUserWithEmailAndPassword(data.email,data.password);
-		await updateProfile({displayName: data.name})
-		
+		fetch('http://localhost:5000/api/v1/user-create', {
+			method: "POST",
+			headers: {
+				"content-type": "application/json"
+			},
+			body: JSON.stringify(userData)
+		}).then(req => req.json())
+			.then(data => {
+				try {
+					// setisLoading(false)
+					if (!data?.status) {
+						toast.error(data.message)
+					} else {
+						localStorage.setItem("accessToken", data?.token)
+						toast.success("registration successful");
+						reset();
+					}
+				} catch (error) {
+					// getFetchError(error.message)
+				}
+
+			})
 	}
 	return (
 		<div className='flex bg-gray-50 justify-center items-center  w-full min-h-screen lg:p-20'>
@@ -56,7 +86,7 @@ if (user) {
 							<div className='flex flex-col justify-center'>
 								<div className="form-control ">
 									<label className="label">
-										<span className="label-text text-gray-900 capitalize text-md font-medium">your name</span>
+										<span className="label-text text-gray-900 capitalize text-md font-medium">full name</span>
 									</label>
 									<input {...register("name", { required: true, minLength: 3 })} type="text" placeholder="Full Name" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
@@ -66,7 +96,17 @@ if (user) {
 								</div>
 								<div className="form-control ">
 									<label className="label">
-										<span className="label-text text-gray-900 capitalize text-md font-medium">your email</span>
+										<span className="label-text text-gray-900 capitalize text-md font-medium">username</span>
+									</label>
+									<input {...register("username", { required: true, minLength: 3 })} type="text" placeholder="Full Name" className="bg-white input input-bordered w-full text-gray-800" />
+									<label className="label">
+										{errors.username?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required</span>}
+										{errors.username?.type === "minLength" && <span className="label-text-alt capitalize text-red-600">at lest 6 characters</span>}
+									</label>
+								</div>
+								<div className="form-control ">
+									<label className="label">
+										<span className="label-text text-gray-900 capitalize text-md font-medium">valid email</span>
 									</label>
 									<input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} type="text" placeholder="Your Email" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
@@ -76,7 +116,23 @@ if (user) {
 								</div>
 								<div className="form-control ">
 									<label className="label">
-										<span className="label-text text-gray-900 capitalize text-md font-medium">your password</span>
+										<span className="label-text text-gray-900 capitalize text-md font-medium">contact number</span>
+									</label>
+									<input {...register("contactNumber", { required: true })} type="number" placeholder="Contact Number" className="bg-white input input-bordered w-full text-gray-800" />
+									<label className="label">
+										{errors.contactNumber?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
+									</label>
+								</div>
+
+
+							</div>
+						</div>
+						{/* right side  */}
+						<div className=' w-full'>
+							<div className='flex flex-col justify-center'>
+								<div className="form-control ">
+									<label className="label">
+										<span className="label-text text-gray-900 capitalize text-md font-medium">password</span>
 									</label>
 									<input {...register("password", { required: true, minLength: 6 })} type="password" placeholder="********" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
@@ -86,39 +142,37 @@ if (user) {
 								</div>
 								<div className="form-control ">
 									<label className="label">
-										<span className="label-text text-gray-900 capitalize text-md font-medium">contact number</span>
+										<span className="label-text text-gray-900 capitalize text-md font-medium">confirm Password</span>
 									</label>
-									<input {...register("contactNumber", { required: true})} type="number" placeholder="Contact Number" className="bg-white input input-bordered w-full text-gray-800" />
+									<input {...register("confirmPassword", { required: true, minLength: 6 })} type="password" placeholder="********" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-										{errors.contactNumber?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
+										{errors.confirmPassword?.type === "required" && <span className="label-text-alt capitalize text-red-600">This field is required</span>}
+										{errors.confirmPassword?.type === "minLength" && <span className="label-text-alt capitalize text-red-600">at lest 6 characters</span>}
 									</label>
 								</div>
-							</div>
-						</div>
-						{/* right side  */}
-						<div className=' w-full'>
-							<div className='flex flex-col justify-center'>
+
 								<div className="form-control ">
 									<label className="label">
-										<span className="label-text text-gray-900 capitalize text-md font-medium">your address 1</span>
+										<span className="label-text text-gray-900 capitalize text-md font-medium">address 1</span>
 									</label>
 									<input {...register("addressFirst", { required: true })} type="text" placeholder="Your Address" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-									{errors.addressFirst?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required </span>}
+										{errors.addressFirst?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required </span>}
 									</label>
 								</div>
 								<div className="form-control ">
 									<label className="label">
-										<span className="label-text text-gray-900 capitalize text-md font-medium">your address 2</span>
+										<span className="label-text text-gray-900 capitalize text-md font-medium">address 2</span>
 									</label>
 									<input {...register("addressSecond", { required: true })} type="text" placeholder="Your Address" className="bg-white input input-bordered w-full text-gray-800" />
 									<label className="label">
-									{errors.addressSecond?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required </span>}
+										{errors.addressSecond?.type === "required" && <span className="label-text-alt capitalize text-red-600">this field is required </span>}
 									</label>
 								</div>
 								<SocialLogin></SocialLogin>
 							</div>
 						</div>
+						{handleError && handleError}
 						<p className='text-gray-800 text-sm ml-1 my-2 capitalize'>Have a already account?
 							<Link to={"/login"} className="text-green-500"> go login</Link> </p>
 						<div className='lg:text-end text:start my-3'>
