@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import ProductSingleRow from './ProductSingleRow';
 import axios from '../../axios';
-import Loader from '../../Shared/Loader'
-import axiosInst from '../../axios';
 import DeleteModal from './DeleteModal';
 import UpdateModal from './UpdateModal';
 
@@ -14,7 +12,7 @@ import UpdateModal from './UpdateModal';
 const AllProducts = () => {
 
 	
-	const [deleteItem, setDeleteItem] = useState('');
+	const [deleteItem, setDeleteItem] = useState(null);
 
 	const [updateItem, setUpdateItem] = useState(null);
 	// const [products, setProducts] = useState([]);
@@ -32,26 +30,16 @@ const AllProducts = () => {
 	}
 	const handleDelete = (item) => {
 		setDeleteItem(item)
-		// console.log(item);
 	}
 	const handleUpdate = (item) => {
 		setUpdateItem(item)
-		console.log("from parent",item);
 		
 	}
-	// const handleDeleteProductById =async () => {
-	// console.log("click");
-	// await axiosInst.delete(`/product/${deleteItem._id}`).then(res => {
-	// 	refetch()
-	// 		console.log(res);
-	// 	});
-	// }
-
 
 	return (
 		<>
 			{
-				deleteItem && <DeleteModal deleteItem={deleteItem}></DeleteModal>
+				deleteItem && <DeleteModal deleteItem={deleteItem} setDeleteItem={setDeleteItem} refetch={refetch}></DeleteModal>
 			}
 			{
 				updateItem && <UpdateModal updateItem={updateItem} setUpdateItem={setUpdateItem} refetch={refetch}></UpdateModal>

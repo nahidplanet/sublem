@@ -4,14 +4,10 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify'
 
 
-
 const UpdateModal = ({ updateItem, refetch, setUpdateItem }) => {
-	// const [update,setUpdate] = useState(updateItem);
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
-	console.log("from child", updateItem);
 
 	const onSubmit = async (products) => {
-		console.log(products);
 		let formData = new FormData();
 
 		const img = products.productImage;
@@ -44,9 +40,7 @@ const UpdateModal = ({ updateItem, refetch, setUpdateItem }) => {
 		fetch(url, UPDATE_PRODUCT)
 			.then(response => response.json())
 			.then(data => {
-				console.log("conslole dataf------>",data);
 				if (!data.status) {
-					console.log(data);
 					toast.error("Product update failed")
 				} else {
 					toast.success("Product update successful");

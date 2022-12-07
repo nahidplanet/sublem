@@ -1,7 +1,22 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+import axiosInst from '../../axios';
 
-const DeleteModal = ({deleteItem}) => {
-	console.log(deleteItem);
+const DeleteModal = ({deleteItem,setDeleteItem,refetch}) => {
+	const handleDeleteProduct = () =>{
+		const url = `http://localhost:5000/api/v1/product/${deleteItem._id}`;
+		axiosInst.delete(url).then(res=>{
+			if (!res.data.status) {
+				toast.error("Product delete failed")
+			} else {
+				toast.success("Product delete successful");
+				refetch();
+				setDeleteItem(null)
+
+
+			}
+		})
+	}
 	return (
 		<div >
 				<input type="checkbox" id="ProductDeleteModal" className="modal-toggle" />
@@ -15,7 +30,7 @@ const DeleteModal = ({deleteItem}) => {
 								<tbody>
 									<tr>
 										<td>
-											<button className='btn bg-red-500  hover:bg-red-600 border-none btn-warning text-white'  >Delete</button>
+											<button onClick={handleDeleteProduct} className='btn bg-red-500  hover:bg-red-600 border-none btn-warning text-white'  >Delete</button>
 										</td>
 										<td>
 											<div className="modal-action ">
