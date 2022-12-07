@@ -36,7 +36,7 @@ const UpdateModal = ({ updateItem, refetch, setUpdateItem }) => {
 			body: formData
 		};
 		const url = `http://localhost:5000/api/v1/product/${updateItem._id}`;
-		
+
 		fetch(url, UPDATE_PRODUCT)
 			.then(response => response.json())
 			.then(data => {
@@ -60,6 +60,7 @@ const UpdateModal = ({ updateItem, refetch, setUpdateItem }) => {
 				<div className="modal-box rounded-lg m-0 p-0 bg-gray-200 text-gray-900 border shadow-lg">
 					<label htmlFor="productUpdate" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 					<form className="p-10 bg-white rounded shadow-xl" onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+						<p className='text-center text-gray-800 font-bold text-xl capitalizes'>Update Product</p>
 
 						<div className="">
 							<label className="block text-sm text-gray-600" >Product Name</label>
@@ -165,7 +166,7 @@ const UpdateModal = ({ updateItem, refetch, setUpdateItem }) => {
 						</div>
 
 						<div className="mt-6">
-							<input type="submit" value="Publish" className="px-4 py-1 cursor-pointer text-white font-light tracking-wider bg-gray-900 rounded" ></input>
+							<input type="submit" value="Update" className="px-4 py-1 cursor-pointer text-white font-light tracking-wider bg-gray-900 rounded" ></input>
 						</div>
 					</form>
 				</div>
