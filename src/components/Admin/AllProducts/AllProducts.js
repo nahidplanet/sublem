@@ -4,13 +4,19 @@ import { useQuery } from 'react-query';
 import ProductSingleRow from './ProductSingleRow';
 import axios from '../../axios';
 import Loader from '../../Shared/Loader'
+import axiosInst from '../../axios';
+import DeleteModal from './DeleteModal';
+import UpdateModal from './UpdateModal';
 
 
 
 
 const AllProducts = () => {
 
-	const [modalData, setModalData] = useState(null);
+	
+	const [deleteItem, setDeleteItem] = useState('');
+
+	const [updateItem, setUpdateItem] = useState(null);
 	// const [products, setProducts] = useState([]);
 
 	const getFacts = () => {
@@ -19,23 +25,45 @@ const AllProducts = () => {
 		})
 		return res;
 	};
-	const { data, error, isLoading } = useQuery('AllProducts', getFacts);
+	const { data, error, isLoading, refetch } = useQuery('AllProducts', getFacts);
+
 	if (isLoading) {
-		return <Loader></Loader>
+		// return <Loader></Loader>
 	}
-	const productHandler = (data) => {
-		setModalData(data);
+	const handleDelete = (item) => {
+		setDeleteItem(item)
+		// console.log(item);
 	}
+	const handleUpdate = (item) => {
+		setUpdateItem(item)
+		console.log("from parent",item);
+		
+	}
+	// const handleDeleteProductById =async () => {
+	// console.log("click");
+	// await axiosInst.delete(`/product/${deleteItem._id}`).then(res => {
+	// 	refetch()
+	// 		console.log(res);
+	// 	});
+	// }
+
+
 	return (
 		<>
+			{
+				deleteItem && <DeleteModal deleteItem={deleteItem}></DeleteModal>
+			}
+			{
+				updateItem && <UpdateModal updateItem={updateItem} setUpdateItem={setUpdateItem} refetch={refetch}></UpdateModal>
+			}
 			<div >
-				<input type="checkbox" id="ProductDeleteModal" className="modal-toggle" />
-				<div className="modal   modal-bottom sm:modal-middle">
+				<input  type="checkbox" id="updateProduct" className="modal-toggle" />
+				<div className="modal modal-bottom sm:modal-middle">
 					<div className="modal-box bg-gray-200 text-gray-900 border shadow-lg">
-						<h3 className="font-bold text-lg">Are you sure to delete!</h3>
-						<p className="py-4">Name: {modalData}</p>
+						<h3 className="font-bold text-lg">Are you sure to updet !</h3>
+						<p className="py-4">Name: updae</p>
 						<div className="modal-action">
-							<label htmlFor="ProductDeleteModal" className="btn bg-red-500 hover:bg-red-600 border-none text-white">Agree!</label>
+							<label htmlFor="updateProduct" className="btn bg-red-500 hover:bg-red-600 border-none text-white">Agree!</label>
 						</div>
 					</div>
 				</div>
@@ -58,9 +86,11 @@ const AllProducts = () => {
 					</thead>
 					<tbody className=' text-white'>
 						{
-							data?.data?.data.map((row,index) =>
-								<ProductSingleRow key={row._id} index={index} data={row} productHandler={productHandler}></ProductSingleRow>
-						)}
+							data?.data?.data.map((item, index) =>
+								<ProductSingleRow key={item._id} index={index} item={item} handleUpdate={handleUpdate} handleDelete={handleDelete}></ProductSingleRow>
+							)
+						}
+
 					</tbody>
 					{/* <!-- foot --> */}
 					<tfoot className='bg-gray-800'>

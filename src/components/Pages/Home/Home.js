@@ -7,13 +7,15 @@ import ProductSlider from './ProductSlider';
 
 const Home = () => {
     return (
-        <div>
-            {/* <Header></Header> */}
-            <MainSlider></MainSlider>
-            <ProductSlider></ProductSlider>
-            <Categories></Categories> 
-            {/* <Footer></Footer> */}
-        </div>
+        <>
+            <Header></Header>
+            <div>
+                <MainSlider></MainSlider>
+                <ProductSlider></ProductSlider>
+                <Categories></Categories>
+            </div>
+            <Footer></Footer>
+        </>
     );
 };
 

@@ -1,26 +1,38 @@
 import React from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Navigate, useLocation } from 'react-router';
+import {  useLocation, useNavigate } from 'react-router';
 import axiosInst from '../axios';
 import Loader from '../Shared/Loader';
 
 const RequireAdmin = ({ children }) => {
 	const location = useLocation();
+	const navigate = useNavigate();
+	const [admin, setAdmin] = useState(false)
 
 	const getFacts = () => {
 		const res = axiosInst.get('/check-admin').then(res => res)
 		return res;
 	};
-	const { data, isLoading } = useQuery('checkAdmin', getFacts);
+	const { data, isLoading } = useQuery('checkAdmin', () => fetch(`http://localhost:5000/api/v1/check-admin`, {
+		method: "GET",
+		headers: {
+			"content-type": "application/json",
+			"authorization": `Bearer ${localStorage.getItem('accessToken')}`
+		},
+	}).then(res => res.json())
+		.then(data => {
+
+			setAdmin(data.status);
+			return data;
+		}));
+
 	if (isLoading) {
 		return <Loader></Loader>
 	}
-	if (data?.data?.admin !== "admin") {
-		// Redirect them to the /login page, but save the current location they were
-		// trying to go to when they were redirected. This allows us to send them
-		// along to that page after they login, which is a nicer user experience
-		// than dropping them off on the home page
-		return <Navigate to="/developer/login" state={{ from: location }} replace></Navigate>
+	if (!admin) {
+
+		navigate('login')
 	}
 
 	return children;

@@ -13,7 +13,7 @@ const Header = () => {
        setOpen(!open)
       }
     return (
-        <div className=''>
+        <div className='my-0 py-0'>
             <nav>
                 <HeaderTop></HeaderTop>
                 <div>

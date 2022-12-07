@@ -36,7 +36,7 @@ const Footer = () => {
                 </div>
                 <div className='flex justify-center items-center w-full lg:w-80 px-4 lg:px-0'>
                     <input type="text" placeholder="Email Address..." className="font-semibold input input-bordered border-black  input-md w-full  bg-white border-r-0 rounded rounded-r-none" />
-                    <button className='border w-[40px] border-l-0 bg-black text-white  border-black rounded rounded-l-none'>
+                    <button className='border w-[40px] mt-[10px] border-l-0 bg-black text-white  border-black rounded rounded-l-none'>
                         <CheckIcon className='w-5 h-[46px] mx-2 ' />
                     </button>
                 </div>

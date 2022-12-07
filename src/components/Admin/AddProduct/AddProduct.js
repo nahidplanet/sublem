@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 
@@ -29,6 +28,9 @@ const AddProduct = () => {
 
 		const requestOptions = {
 			method: 'POST',
+			headers:{
+				"authorization":`Bearer ${localStorage.getItem('accessToken')}`
+			},
 			body: formData
 		};
 		fetch('http://localhost:5000/api/v1/product', requestOptions)
@@ -37,9 +39,9 @@ const AddProduct = () => {
 				console.log(data);
 				if (!data.status) {
 					console.log(data);
-					toast.error("product upload failed")
+					toast.error("Product upload failed")
 				} else {
-					toast.success("product upload successful");
+					toast.success("Product upload successful");
 					reset();
 
 				}

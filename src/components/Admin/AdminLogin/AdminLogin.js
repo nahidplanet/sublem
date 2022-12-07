@@ -1,15 +1,13 @@
 
-import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import "./AdminLogin.css"
-import {  useLocation, useNavigate } from 'react-router';
+import {  useNavigate } from 'react-router';
 
 const AdminLogin = () => {
-	const location = useLocation()
 	const navigate = useNavigate()
-	let from = location.state?.from?.pathname || "/";
+	// let from = location.state?.from?.pathname || "/";
 	const [open, setOpen] = useState(false)
 
 	const emailRef = useRef('');
@@ -19,18 +17,28 @@ const AdminLogin = () => {
 		e.preventDefault()
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
-		const data = { email, password }
-		axios.post('http://localhost:5000/api/v1/developer/login/',data).then(res => {
-			console.log(res);
-			if (res.data.status) {
-				console.log();
-				localStorage.setItem("accessToken", res.data.accessToken)
-				toast.success("login success");
-				navigate('/developer');
-			}
-		}).catch(error => {
-			toast.error(error.response.data.message);
+		const adminInfo = { email, password }
+		if (!email || !password) {
+			return toast.error("Invalid Email or Password");
+		}
+		fetch(`http://localhost:5000/api/v1/developer/login`, {
+			method: "POST",
+			headers: {
+				"content-type": "application/json"
+			},
+			body: JSON.stringify(adminInfo)
 		})
+			.then(res => res.json())
+			.then(data => {
+				if (!data.status) {
+					toast.error(data?.message);
+				};
+				if (data.status) {
+					localStorage.setItem("accessToken", data.accessToken)
+					toast.success("Welcome To Admin");
+					navigate('/developer');
+				}
+			})
 
 	}
 	return (
