@@ -36,9 +36,7 @@ const AddProduct = () => {
 		fetch('http://localhost:5000/api/v1/product', requestOptions)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data);
 				if (!data.status) {
-					console.log(data);
 					toast.error("Product upload failed")
 				} else {
 					toast.success("Product upload successful");

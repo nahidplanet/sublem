@@ -20,7 +20,6 @@ const HeaderTop = () => {
     //     signOut()
         // navigate("/login")
     // }
-    // console.log(user);
 
     return (
         <div className='hidden lg:block text-white text-sm capitalize'>

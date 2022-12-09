@@ -17,7 +17,7 @@ const HomeServices = () => {
 			</div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full p-8 gap-10">
 				<div className="sm:col-span-2 md:col-span-3 lg:h-[500px]">
-					<Link to={"/services"}>
+					<Link to={"service-category"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={bed} alt="Shoes" />
 						</figure>
@@ -25,51 +25,27 @@ const HomeServices = () => {
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/service-category/cabinets"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={carpet} alt="Shoes" />
 						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>carpet</h1>
+						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>cabinets design</h1>
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/service-category/gypsum"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={mattress} alt="Shoes" />
 						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>mattress</h1>
+						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>gypsum design</h1>
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/service-category/painting"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
 						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>sofa</h1>
-					</Link>
-				</div>
-				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
-						<figure className='w-full h-full '>
-							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
-						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>sofa</h1>
-					</Link>
-				</div>
-				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
-						<figure className='w-full h-full '>
-							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
-						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>sofa</h1>
-					</Link>
-				</div>
-				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
-						<figure className='w-full h-full '>
-							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
-						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>sofa</h1>
+						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>Wall-painting</h1>
 					</Link>
 				</div>
 			</div>

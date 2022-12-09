@@ -18,13 +18,10 @@ const Abc = () => {
 	}
 	const { name, productImage, code, sortDescription, longDescription, regularPrice, newPrice } = data?.data?.data[0];
 	const image = productImage[0]?.productImagePath;
-	console.log(productImage);
-	
 	refetch();
 const handleClick = (index) =>{
 	setSliderImage(productImage[index]?.productImagePath);
 }
-console.log(sliderImage);
 
 
 	return (

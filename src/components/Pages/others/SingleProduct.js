@@ -14,7 +14,6 @@ const SingleProduct = () => {
 
 	var baseUrl = `http://localhost:5000/images/product/`;
 	const { id } = useParams();
-	console.log(id);
 	const { isLoading, error, data } = useQuery(
 		['singleProduct'], () => axios.get(`http://localhost:5000/api/v1/product/${id}`)
 			.then(data => data)
@@ -24,7 +23,6 @@ const SingleProduct = () => {
 	}
 	const { name, productImage, code, sortDescription, longDescription, regularPrice, newPrice } = data?.data?.data[0];
 	const image = productImage[0]?.productImagePath;
-	console.log();
 
 	const settings = {
 		customPaging: function(i) {

@@ -16,7 +16,7 @@ const OfficeCategory = () => {
 			</div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full p-8 gap-10">
 				<div className="sm:col-span-2 md:col-span-3 lg:h-[500px]">
-					<Link to={"/office"}>
+					<Link to={"/office-category"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={bed} alt="Shoes" />
 						</figure>
@@ -24,7 +24,7 @@ const OfficeCategory = () => {
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/office-category/carpets"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={carpet} alt="Shoes" />
 						</figure>
@@ -32,7 +32,7 @@ const OfficeCategory = () => {
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/office-category/bed_mattress"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={mattress} alt="Shoes" />
 						</figure>
@@ -40,7 +40,7 @@ const OfficeCategory = () => {
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/office-category/sofa"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
 						</figure>
@@ -48,27 +48,27 @@ const OfficeCategory = () => {
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/office-category/curtains"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
 						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>sofa</h1>
+						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>curtains</h1>
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/office-category/wallpaper"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
 						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>sofa</h1>
+						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>wallpaper</h1>
 					</Link>
 				</div>
 				<div className=" h-[200px] p-0 w-full rounded-2xl ">
-					<Link>
+					<Link to={"/office-category/bed"}>
 						<figure className='w-full h-full '>
 							<img className='w-full h-full shadow-xl rounded-md' src={sofa} alt="Shoes" />
 						</figure>
-						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>sofa</h1>
+						<h1 className='text-center capitalize font-semibold text-gray-800 text-2xl'>bed</h1>
 					</Link>
 				</div>
 			</div>

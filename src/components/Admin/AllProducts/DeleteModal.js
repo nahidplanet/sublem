@@ -12,10 +12,8 @@ const DeleteModal = ({deleteItem,setDeleteItem,refetch}) => {
 				toast.success("Product delete successful");
 				refetch();
 				setDeleteItem(null)
-
-
 			}
-		})
+		}).catch(err=>toast.error(err?.response?.data?.message))
 	}
 	return (
 		<div >
@@ -23,10 +21,8 @@ const DeleteModal = ({deleteItem,setDeleteItem,refetch}) => {
 				<div className="modal   modal-bottom sm:modal-middle">
 					<div className="modal-box bg-gray-200 text-gray-900 border shadow-lg">
 						<h3 className="font-bold text-lg">Are you sure to delete!</h3>
-						<p className="py-4">{deleteItem._id} </p>
-						<p className="py-4">{deleteItem.name} </p>
-						<p className="py-4">{deleteItem.code} </p>
-						<p className="py-4">{deleteItem.price} </p>
+						<p >{deleteItem._id} </p>
+						<p >{deleteItem.name} </p>
 
 						<div className='flex gap-10 justify-end items-center'>
 							<table>

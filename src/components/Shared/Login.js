@@ -36,7 +36,6 @@ const Login = () => {
 		const password = passwordRef.current.value;
 		const data = { email, password }
 		axios.post('http://localhost:5000/api/v1/login-user',data).then(res => {
-			console.log("response is",res);
 			if (res.data.status) {
 				localStorage.setItem("accessToken", res.data.accessToken)
 				toast.success("login success");

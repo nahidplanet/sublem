@@ -1,8 +1,9 @@
 import React from 'react';
-const ProductSingleRow = ({handleDelete,handleUpdate,item,index,}) => {
+const ProductSingleRow = ({handleDelete,handleUpdate,item,index,page,limit}) => {
+	const num = (page-1)*parseInt(limit);
 	return (
 		<tr key={item._id}>
-		<td><p>{1 + index++}</p></td>
+		<td><p>{1+num + index++}</p></td>
 		<td>
 			<div className="flex items-center space-x-3">
 				<div className="avatar">
@@ -12,11 +13,10 @@ const ProductSingleRow = ({handleDelete,handleUpdate,item,index,}) => {
 				</div>
 			</div>
 		</td>
-		<td>
-			<p>{item?.name}</p>
-			{/* <span className="badge badge-ghost badge-sm">name</span> */}
-		</td>
+		<td>{`${item?.name.slice(0, 20)} . . .`}</td>
 		<td>{item?._id}</td>
+		<td>{item?.category}</td>
+		<td>{item?.type}</td>
 		<td>{item?.code}</td>
 		<td>{item?.price}</td>
 		<th className=''>
@@ -24,6 +24,7 @@ const ProductSingleRow = ({handleDelete,handleUpdate,item,index,}) => {
 			<label onClick={() => handleDelete(item)} htmlFor="ProductDeleteModal" className="btn btn-ghost btn-xs bg-red-500">delete</label>
 			<label onClick={() => handleUpdate(item)} htmlFor="productUpdate" className="btn btn-ghost btn-xs bg-sky-500 ml-5">Update</label>
 		</th>
+		<td>{item?.status}</td>
 	</tr>
 	);
 };
