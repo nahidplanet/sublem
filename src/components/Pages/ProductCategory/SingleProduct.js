@@ -2,18 +2,39 @@
 import { HeartIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const SingleProduct = ({ data }) => {
 	const navigate = useNavigate();
-	const { _id, name, productImage } = data;
+	const { _id, name, productImage, price } = data;
 
-	const handleArabicProductDetails = (id) => {
-		navigate(`/arabic/${id}`);
+	const handleAddToCart = (id, price) => {
+		const addToCartInfo = { productId: id, price }
+		fetch('http://localhost:5000/api/v1/product/cart/user/',{
+			method:"POST",
+			headers: {
+				'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+				'content-type': 'application/json'
+			},
+			body:JSON.stringify(addToCartInfo)
+		})
+		.then(res=>res.json())
+		.then(data =>{
+			if (data.status) {
+				toast.success("Product added successful");
+			}else{
+				toast.error("Product added failed");
+			}
+		})
+
+	}
+	const handleHomeCategoryProductDetails = (id) => {
+		navigate(`/home-category/${id}`);
 	}
 	return (
 		<div className='p-2'>
 			<div className="card rounded-none border text-gray-900 ">
-				<figure className='lg:h-[210px]  p-4'>
+				<figure className='lg:h-[250px] p-4'>
 					<img className='h-full w-[80%] mx-auto' src={`http://localhost:5000/images/product/${productImage[0].productImagePath}`} alt="product_image" />
 				</figure>
 				<div className="card-body p-2">
@@ -25,8 +46,8 @@ const SingleProduct = ({ data }) => {
 							<p> <span className='text-gray-800 font-bold'>save:</span> 4,000</p>
 						</div>
 						<div className='text-xm md:text-md flex justify-evenly gap-5  w-full'>
-							<button onClick={() => handleArabicProductDetails(_id)} className="mt-0 border hover:bg-slate-100 p-1 rounded-sm w-5/12" >View</button>
-							<button className="mt-0 border hover:bg-slate-100 p-1 rounded-sm w-5/12">Add Cart</button>
+							<button onClick={() => handleHomeCategoryProductDetails(_id)} className="mt-0 border hover:bg-slate-100 p-1 rounded-sm w-5/12" >View</button>
+							<button onClick={() => handleAddToCart(_id, price)} className="mt-0 border hover:bg-slate-100 p-1 rounded-sm w-5/12">Add Cart</button>
 							<button className=" mt-0  w-2/12">
 								<HeartIcon className='text-gray-600 w-6 h-6'></HeartIcon>
 							</button>

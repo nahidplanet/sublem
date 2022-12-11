@@ -1,6 +1,7 @@
 
 import React from "react";
 import Slider from "react-slick";
+import SingleProduct from "../ProductCategory/SingleProduct";
 import FeatureSingleProduct from "./FeatureSingleProduct";
 
 const ProductSlider = () => {
@@ -78,9 +79,7 @@ const ProductSlider = () => {
 				<div className="divider h-[1px] bg-gray-400"></div> 
 			</div>
 			<Slider {...settings} className="mt-3 mb-20">
-				<div className="">
-					<FeatureSingleProduct></FeatureSingleProduct>
-				</div>
+			
 				<div className=" ">
 					<FeatureSingleProduct></FeatureSingleProduct>
 				</div>

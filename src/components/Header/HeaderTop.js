@@ -5,6 +5,7 @@ import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import auth from '../../firebaseAuth/firebase.init';
 import Loader from '../Shared/Loader';
 const HeaderTop = () => {
+
     // let handleError;
     // const [user, loading, error] = useAuthState(auth);
     // const [signOut] = useSignOut(auth);
@@ -58,7 +59,7 @@ const HeaderTop = () => {
                     </div>
                 </div>
                 <div>
-                    <div className="dropdown dropdown-end">
+                    <div  className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle">
                             <div className="indicator">
                                 <ShoppingBagIcon className='w-5 h-5 text-normal' />
@@ -71,7 +72,7 @@ const HeaderTop = () => {
                                 <span className="font-bold text-md">8 Items</span>
                                 <span className="text-info">Subtotal: $999</span>
                                 <div className="card-actions">
-                                    <button className="btn btn-primary btn-block">View cart</button>
+                                    <Link to="/cart"  className="btn btn-primary btn-block">View cart </Link>
                                 </div>
                             </div>
                         </div>

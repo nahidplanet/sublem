@@ -13,7 +13,6 @@ import NotFoundPage from "./components/Shared/NotFoundPage";
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import Login from "./components/Shared/Login";
 import SingUp from "./components/Shared/SingUp";
-import SingleProduct from "./components/Pages/others/SingleProduct";
 
 import Profile from "./components/Pages/Dashboard/Profile";
 import WishList from "./components/Pages/Dashboard/WishList";
@@ -58,6 +57,8 @@ import ServiceCabinet from "./components/Pages/ProductCategory/OurService/Servic
 import ServiceGypsum from "./components/Pages/ProductCategory/OurService/ServiceGypsum";
 import ServicePanting from "./components/Pages/ProductCategory/OurService/ServicePanting";
 import AllService from "./components/Pages/ProductCategory/OurService/AllService";
+import ProductDetails from "./components/Pages/ProductCategory/ProductDetails";
+import Cart from "./components/Pages/Cart/Cart";
 
 
 function App() {
@@ -96,41 +97,69 @@ function App() {
           <Route path="save-cart" element={<RequireAuth><SaveCart></SaveCart></RequireAuth>}></Route>
         </Route>
 
+        {/* page  */}
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/singup" element={<SingUp></SingUp>}></Route>
-        <Route path="/single-product" element={<SingleProduct></SingleProduct>}></Route>
+        <Route path="/single-product" element={<ProductDetails></ProductDetails>}></Route>
+        <Route path="/cart" element={<Cart></Cart>}></Route>
 
 
         {/* home category  */}
         <Route path="/home-category" element={<AllHomeFurniture></AllHomeFurniture>}></Route>
+        <Route path="/home-category/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="home-category/curtains" element={<HomeCurtains></HomeCurtains>}></Route>
+        <Route path="home-category/curtains/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="home-category/carpets" element={<HomeCarpets></HomeCarpets>}></Route>
+        <Route path="home-category/carpets/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="home-category/sofa" element={<HomeSofa></HomeSofa>}></Route>
+        <Route path="home-category/sofa/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="home-category/wallpaper" element={<HomeWallpaper></HomeWallpaper>}></Route>
+        <Route path="home-category/wallpaper/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="home-category/bed" element={<HomeBed></HomeBed>}></Route>
+        <Route path="home-category/bed/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="home-category/bed_mattress" element={<HomeBedMattress></HomeBedMattress>}></Route>
+        <Route path="home-category/bed_mattress/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="home-category/sofa" element={<HomeSofa></HomeSofa>}></Route>
+        <Route path="home-category/sofa/:id" element={<ProductDetails></ProductDetails>}></Route>
         {/* office category  */}
         <Route path="office-category" element={<AllOfficeFurniture></AllOfficeFurniture>}></Route>
+        <Route path="office-category/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="office-category/curtains" element={<OfficeCurtains></OfficeCurtains>}></Route>
+        <Route path="office-category/curtains/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="office-category/carpets" element={<OfficeCarpets></OfficeCarpets>}></Route>
+        <Route path="office-category/carpets/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="office-category/sofa" element={<OfficeSofa></OfficeSofa>}></Route>
+        <Route path="office-category/sofa/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="office-category/wallpaper" element={<OfficeWallpaper></OfficeWallpaper>}></Route>
+        <Route path="office-category/wallpaper/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="office-category/bed" element={<OfficeBed></OfficeBed>}></Route>
+        <Route path="office-category/bed/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="office-category/bed_mattress" element={<OfficeBedMattress></OfficeBedMattress>}></Route>
+        <Route path="office-category/bed_mattress/:id" element={<ProductDetails></ProductDetails>}></Route>
         {/* arabic category  */}
         <Route path="arabic-category/" element={<AllArabicFurniture></AllArabicFurniture>}></Route>
+        <Route path="arabic-category/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="arabic-category/curtains" element={<ArabicCurtains></ArabicCurtains>}></Route>
+        <Route path="arabic-category/curtains/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="arabic-category/carpets" element={<ArabicCarpets></ArabicCarpets>}></Route>
+        <Route path="arabic-category/carpets/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="arabic-category/sofa" element={<ArabicSofa></ArabicSofa>}></Route>
+        <Route path="arabic-category/sofa/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="arabic-category/wallpaper" element={<ArabicWallpaper></ArabicWallpaper>}></Route>
+        <Route path="arabic-category/wallpaper/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="arabic-category/bed" element={<ArabicBed></ArabicBed>}></Route>
+        <Route path="arabic-category/bed/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="arabic-category/bed_mattress" element={<ArabicBedMattress></ArabicBedMattress>}></Route>
+        <Route path="arabic-category/bed_mattress/:id" element={<ProductDetails></ProductDetails>}></Route>
         {/* service category  */}
         <Route path="service-category/" element={<AllService></AllService>}></Route>
+        <Route path="service-category//:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="service-category/cabinets" element={<ServiceCabinet></ServiceCabinet>}></Route>
+        <Route path="service-category/cabinets/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="service-category/gypsum" element={<ServiceGypsum></ServiceGypsum>}></Route>
+        <Route path="service-category/gypsum/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="service-category/painting" element={<ServicePanting></ServicePanting>}></Route>
+        <Route path="service-category/painting/:id" element={<ProductDetails></ProductDetails>}></Route>
         {/* wrong route  */}
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
