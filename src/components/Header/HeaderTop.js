@@ -4,7 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import auth from '../../firebaseAuth/firebase.init';
 import Loader from '../Shared/Loader';
+import axiosInst from '../axios';
+import { useQuery } from 'react-query';
+import { useContext } from 'react';
+import { CartContext } from '../../App';
+
+
 const HeaderTop = () => {
+    const [cartItem] = useContext(CartContext);
+
+    // const totalPrice = data?.data?.result?.cartItems.reduce((x, y) => x + (y.price * y.quantity), 0);
 
     // let handleError;
     // const [user, loading, error] = useAuthState(auth);
@@ -19,7 +28,7 @@ const HeaderTop = () => {
     // }
     // if (!user) {
     //     signOut()
-        // navigate("/login")
+    // navigate("/login")
     // }
 
     return (
@@ -59,11 +68,11 @@ const HeaderTop = () => {
                     </div>
                 </div>
                 <div>
-                    <div  className="dropdown dropdown-end">
+                    <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle">
                             <div className="indicator">
                                 <ShoppingBagIcon className='w-5 h-5 text-normal' />
-                                <span className="badge badge-sm indicator-item">8</span>
+                                <span className="badge badge-sm indicator-item">{cartItem}</span>
                             </div>
 
                         </label>
@@ -72,7 +81,7 @@ const HeaderTop = () => {
                                 <span className="font-bold text-md">8 Items</span>
                                 <span className="text-info">Subtotal: $999</span>
                                 <div className="card-actions">
-                                    <Link to="/cart"  className="btn btn-primary btn-block">View cart </Link>
+                                    <Link to="/cart" className="btn btn-primary btn-block">View cart </Link>
                                 </div>
                             </div>
                         </div>

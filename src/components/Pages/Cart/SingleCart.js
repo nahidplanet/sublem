@@ -2,11 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { ArrowLongRightIcon,TrashIcon } from '@heroicons/react/24/solid';
 
-const SingleCart = ({ data }) => {
+const SingleCart = ({ data,handleCartDeleteItem }) => {
 	const [cartCount, setCartCount] = useState(data.quantity);
-	const { price } = data;
+	const { price ,productId ,quantity} = data;
 	const { name, productImage, category, type } = data.productId;
-
+	
+	
 
 
 	const handleCartDecrease = () => {
@@ -47,7 +48,9 @@ const SingleCart = ({ data }) => {
 				</div>
 			</div>
 			<div className='flex flex-col items-center justify-between '>
-				<div><TrashIcon className="w-6 h-6"></TrashIcon></div>
+			<div onClick={()=>handleCartDeleteItem(productId._id)} className='flex justify-center items-center border w-10 h-10 hover:bg-slate-600 hover:text-white cursor-pointer rounded-full transition ease-out duration-900 '>
+					<TrashIcon className="w-6 h-6"></TrashIcon>
+				</div>
 				<div><h1 className='font-semibold text-md'>{price} <span className='font-bold text-md'>AED</span> </h1></div>
 			</div>
 
