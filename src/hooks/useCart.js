@@ -5,7 +5,7 @@ import Loader from '../components/Shared/Loader';
 
 const useCart = () => {
 	const { isLoading, data:products, refetch } = useQuery(
-		['cartProduct'], () => axiosInst.get('/product/cart/user/')
+		['cartProduct'], () => axiosInst.get('/product/cart/user')
 			.then(data => data)
 	)
 	

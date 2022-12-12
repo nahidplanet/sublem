@@ -13,7 +13,7 @@ const Header = () => {
        setOpen(!open)
       }
     return (
-        <div className='my-0 py-0'>
+        <div className='my-0 py-0 max-w-[1430px] mx-auto'>
             <nav>
                 <HeaderTop></HeaderTop>
                 <div>

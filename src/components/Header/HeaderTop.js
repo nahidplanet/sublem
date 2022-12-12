@@ -67,10 +67,10 @@ const [products,totalProduct,totalPrice,isLoading,refetch] = useCart();
                             </div>
 
                         </label>
-                        <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-gray-300 shadow">
+                        <div tabIndex={0} className="mt-3 rounded-sm card card-compact dropdown-content w-60 bg-gray-200 border-2 shadow">
                             <div className="card-body">
-                                <span className="font-bold text-md">{totalProduct}</span>
-                                <span className="text-info">Subtotal: $999</span>
+                                <div className="font-bold text-md text-gray-900 flex items-center justify-between"><span>Total Cart Item</span> <span> {totalProduct}</span></div>
+                                <div className="font-bold text-md text-gray-900 flex items-center justify-between"><span>Estimated Total:</span> <span>{totalPrice}AED</span></div>
                                 <div className="card-actions">
                                     <Link to="/cart"  className="btn btn-primary btn-block">View cart </Link>
                                 </div>

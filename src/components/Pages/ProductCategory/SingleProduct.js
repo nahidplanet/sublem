@@ -12,7 +12,7 @@ const SingleProduct = ({ data }) => {
 
 	const handleAddToCart = (id, price) => {
 		const addToCartInfo = { productId: id, price }
-		fetch('http://localhost:5000/api/v1/product/cart/user/',{
+		fetch('http://localhost:5000/api/v1/product/cart/user',{
 			method:"POST",
 			headers: {
 				'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
@@ -37,8 +37,8 @@ const SingleProduct = ({ data }) => {
 	return (
 		<div className='p-2'>
 			<div className="card rounded-none border text-gray-900 ">
-				<figure className='lg:h-[250px] p-4'>
-					<img className='h-full w-[80%] mx-auto' src={`http://localhost:5000/images/product/${productImage[0].productImagePath}`} alt="product_image" />
+				<figure className='lg:h-[300px]'>
+					<img className='w-full h-full mx-auto' src={`http://localhost:5000/images/product/${productImage[0].productImagePath}`} alt="product_image" />
 				</figure>
 				<div className="card-body p-2">
 					<div className="card-actions m-0  ">

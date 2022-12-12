@@ -64,9 +64,10 @@ import Cart from "./components/Pages/Cart/Cart";
 function App() {
 
   return (
-    <div className="App bg-white">
+    <div className="App bg-white ">
       <Header></Header>
-      <Routes>
+     <div className="max-w-[1430px] mx-auto">
+     <Routes>
         {/* default route  */}
         <Route path="/" element={<Home></Home>}></Route>
 
@@ -163,6 +164,7 @@ function App() {
         {/* wrong route  */}
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
+     </div>
       <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>

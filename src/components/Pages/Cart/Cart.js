@@ -12,16 +12,51 @@ import useCart from '../../../hooks/useCart';
 const Cart = () => {
 	const [open, setOpen] = useState(false)
 	const [products,totalProduct,totalPrice,isLoading,refetch] = useCart()
-	// const { isLoading, data, refetch } = useQuery(
-	// 	['cartProduct'], () => axiosInst.get('/product/cart/user/')
-	// 		.then(data => data)
-	// )
-	// if (isLoading) {
-	// 	return <Loader></Loader>
-	// }
-	// const totalProduct = data?.data?.result?.cartItems.reduce((x, y) => x + y.quantity,0);
-	// const totalPrice = data?.data?.result?.cartItems.reduce((x, y)  => x+(y.price*y.quantity),0);
+
+	// product increment 
+	const handleProductIncrease = (id, price) => {
+		const addToCartInfo = { productId: id, price }
+		fetch('http://localhost:5000/api/v1/product/cart/user',{
+			method:"POST",
+			headers: {
+				'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+				'content-type': 'application/json'
+			},
+			body:JSON.stringify(addToCartInfo)
+		})
+		.then(res=>res.json())
+		.then(data =>{
+			if (data.status) {
+				toast.success("Product added successful");
+				refetch();
+			}else{
+				toast.error("Product added failed");
+			}
+		})
+
+	}
+		// product increment 
+		const handleProductDecrement = (id, price) => {
+			const addToCartInfo = { productId: id, price }
+			fetch('http://localhost:5000/api/v1/product/cart/user/decrement',{
+				method:"POST",
+				headers: {
+					'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+					'content-type': 'application/json'
+				},
+				body:JSON.stringify(addToCartInfo)
+			})
+			.then(res=>res.json())
+			.then(data =>{
+				if (data.status) {
+					toast.success("Product added successful");
+					refetch();
+				}else{
+					toast.error("Product added failed");
+				}
+			})
 	
+		}
 	  
 	const handleCartDeleteItem = async (id) => {
 		fetch(`http://localhost:5000/api/v1/product/cart/delete/${id}`, {
@@ -54,7 +89,13 @@ const Cart = () => {
 					<div className='col-span-3 m-2'>
 						{/* single cart  */}
 						{
-							products?.data?.result?.cartItems?.map(item => <SingleCart key={item?.productId?._id} data={item} handleCartDeleteItem={handleCartDeleteItem}></SingleCart>)
+							products?.data?.result?.cartItems?.map(item => <SingleCart 
+								key={item?.productId?._id} 
+								data={item} 
+								handleCartDeleteItem={handleCartDeleteItem}
+								handleProductIncrease={handleProductIncrease}
+								handleProductDecrement={handleProductDecrement}
+								></SingleCart>)
 						}
 					</div>
 					<div className='col-span-2'>
