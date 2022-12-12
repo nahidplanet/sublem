@@ -3,8 +3,10 @@ import { HeartIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import useCart from '../../../hooks/useCart';
 
 const SingleProduct = ({ data }) => {
+	const [products,totalProduct,totalPrice,isLoading,refetch] = useCart();
 	const navigate = useNavigate();
 	const { _id, name, productImage, price } = data;
 
@@ -20,9 +22,9 @@ const SingleProduct = ({ data }) => {
 		})
 		.then(res=>res.json())
 		.then(data =>{
-			console.log(data);
 			if (data.status) {
 				toast.success("Product added successful");
+				refetch();
 			}else{
 				toast.error("Product added failed");
 			}

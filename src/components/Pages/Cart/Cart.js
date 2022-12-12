@@ -7,25 +7,22 @@ import axiosInst from '../../axios';
 import { useQuery } from 'react-query';
 import Loader from '../../Shared/Loader';
 import { toast } from 'react-toastify';
-import { useContext } from 'react';
-import { CartContext } from '../../../App';
+import useCart from '../../../hooks/useCart';
 
 const Cart = () => {
-	const [cartItem,setCartItem] = useContext(CartContext);
 	const [open, setOpen] = useState(false)
-
-	const { isLoading, data, refetch } = useQuery(
-		['cartProduct'], () => axiosInst.get('/product/cart/user/')
-			.then(data => data)
-	)
-	if (isLoading) {
-		return <Loader></Loader>
-	}
-	const totalProduct = data?.data?.result?.cartItems.reduce((x, y) => x + y.quantity, 0);
-	setCartItem(totalProduct)
-	const totalPrice = data?.data?.result?.cartItems.reduce((x, y) => x + (y.price * y.quantity), 0);
-
-
+	const [products,totalProduct,totalPrice,isLoading,refetch] = useCart()
+	// const { isLoading, data, refetch } = useQuery(
+	// 	['cartProduct'], () => axiosInst.get('/product/cart/user/')
+	// 		.then(data => data)
+	// )
+	// if (isLoading) {
+	// 	return <Loader></Loader>
+	// }
+	// const totalProduct = data?.data?.result?.cartItems.reduce((x, y) => x + y.quantity,0);
+	// const totalPrice = data?.data?.result?.cartItems.reduce((x, y)  => x+(y.price*y.quantity),0);
+	
+	  
 	const handleCartDeleteItem = async (id) => {
 		fetch(`http://localhost:5000/api/v1/product/cart/delete/${id}`, {
 			method: 'DELETE',
@@ -57,7 +54,7 @@ const Cart = () => {
 					<div className='col-span-3 m-2'>
 						{/* single cart  */}
 						{
-							data?.data?.result?.cartItems?.map(item => <SingleCart key={item?.productId?._id} data={item} handleCartDeleteItem={handleCartDeleteItem}></SingleCart>)
+							products?.data?.result?.cartItems?.map(item => <SingleCart key={item?.productId?._id} data={item} handleCartDeleteItem={handleCartDeleteItem}></SingleCart>)
 						}
 					</div>
 					<div className='col-span-2'>
@@ -66,7 +63,7 @@ const Cart = () => {
 							<table className='text-gray-800 w-full text-md font-semibold capitalize'>
 								<tr className='flex justify-between my-3'>
 									<td>total item</td>
-									<td>{cartItem}</td>
+									<td>{totalProduct}</td>
 								</tr>
 								<tr className='flex justify-between my-3'>
 									<td>Estimated Delivery</td>

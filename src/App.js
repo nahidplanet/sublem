@@ -59,17 +59,11 @@ import ServicePanting from "./components/Pages/ProductCategory/OurService/Servic
 import AllService from "./components/Pages/ProductCategory/OurService/AllService";
 import ProductDetails from "./components/Pages/ProductCategory/ProductDetails";
 import Cart from "./components/Pages/Cart/Cart";
-import { useState } from "react";
-import { createContext } from "react";
 
-export const CartContext = createContext(0);
 
 function App() {
-  const [cartItem,setCartItem] =useState(0)
 
   return (
-    
-    <CartContext.Provider value={[cartItem,setCartItem]}>
     <div className="App bg-white">
       <Header></Header>
       <Routes>
@@ -172,7 +166,6 @@ function App() {
       <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
-    </CartContext.Provider>
   );
 }
 
