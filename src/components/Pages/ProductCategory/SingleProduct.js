@@ -4,6 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import useCart from '../../../hooks/useCart';
+import { addToDb } from '../../../utils/manageCartProducat';
 
 const SingleProduct = ({ data }) => {
 	const [products,totalProduct,totalPrice,isLoading,refetch] = useCart();
@@ -11,6 +12,7 @@ const SingleProduct = ({ data }) => {
 	const { _id, name, productImage, price } = data;
 
 	const handleAddToCart = (id, price) => {
+		addToDb(id)
 		const addToCartInfo = { productId: id, price }
 		fetch('http://localhost:5000/api/v1/product/cart/user',{
 			method:"POST",
@@ -26,7 +28,8 @@ const SingleProduct = ({ data }) => {
 				toast.success("Product added successful");
 				refetch();
 			}else{
-				toast.error("Product added failed");
+				toast.error("Please login to added");
+				navigate('/login')
 			}
 		})
 

@@ -2,26 +2,29 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebaseAuth/firebase.init';
 import Loader from './Loader';
-import  './Login.css'
+import './Login.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import google from '../../assets/icon/google.svg'
+import facebook from '../../assets/icon/facebookSocial.svg'
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 	const [open, setOpen] = useState(false)
-
+const [token] = useToken()
 	const emailRef = useRef('');
 	const passwordRef = useRef('')
-	// const [fetchUser, setFetchUser] = useState({})
-	// const [fetchLoading, setfetchLoading] = useState(false)
-	// const [fetchError, setfetchError] = useState("")
-	// const { register, handleSubmit, formState: { errors } } = useForm();
+	const [signInWithGoogle, gUser, loading, error] = useSignInWithGoogle(auth);
+
 	let navigate = useNavigate();
 	let location = useLocation();
 
-
+console.log(gUser);
+console.log(gUser?.user?.email);
+console.log(gUser?.user?.displayName);
 
 	let from = location.state?.from?.pathname || "/";
 
@@ -35,7 +38,7 @@ const Login = () => {
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 		const data = { email, password }
-		axios.post('http://localhost:5000/api/v1/login-user',data).then(res => {
+		axios.post('http://localhost:5000/api/v1/login-user', data).then(res => {
 			if (res.data.status) {
 				localStorage.setItem("accessToken", res.data.accessToken)
 				toast.success("login success");
@@ -90,7 +93,12 @@ const Login = () => {
 							<div><Link className='text-gray-600'>Forgot your password</Link></div>
 						</div>
 					</form>
+					<div className='flex gap-5 items-center justify-center mt-3'>
+						<button onClick={()=>signInWithGoogle()} className='w-8 h-8 m-0'><img src={google} alt="google" /></button>
+						<button className='w-8 h-8 m-0'><img src={facebook} alt="facebook" /></button>
+					</div>
 				</div>
+
 			</div>
 		</div>
 	);

@@ -8,6 +8,7 @@ import Loader from '../../Shared/Loader';
 import './ProductDetails.css'
 import { useState } from 'react';
 import axiosInst from '../../axios';
+import { addToDb } from '../../../utils/manageCartProducat';
 
 const ProductDetails = () => {
 	const [cartCount, setCartCount] = useState(0)
@@ -24,7 +25,8 @@ const ProductDetails = () => {
 	const handleCartDecrease = () => {
 		setCartCount(cartCount - 1)
 	}
-	const handleCartIncrease = () => {
+	const handleCartIncrease = (id) => {
+		addToDb(id)
 		setCartCount(cartCount + 1)
 	}
 	const handleAddToCart = (productId, price, quantity) => {
@@ -92,7 +94,7 @@ const ProductDetails = () => {
 														<input value={cartCount} onChange={(e) => setCartCount(toString(e.target.value))} className='w-14 h-10 mx-4 p-2 bg-white border rounded-sm font-bold' type="number" name="" id="incriecInput" />
 													</td>
 													<td>
-														<button onClick={handleCartIncrease} className='border rounded-sm text-gray-900 font-bold text-xl w-10 h-10 hover:bg-gray-500 hover:text-white'>+</button>
+														<button onClick={()=>handleCartIncrease(_id)} className='border rounded-sm text-gray-900 font-bold text-xl w-10 h-10 hover:bg-gray-500 hover:text-white'>+</button>
 													</td>
 												</tr>
 											</tbody>

@@ -12,7 +12,6 @@ import NotFoundPage from "./components/Shared/NotFoundPage";
 
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import Login from "./components/Shared/Login";
-import SingUp from "./components/Shared/SingUp";
 
 import Profile from "./components/Pages/Dashboard/Profile";
 import WishList from "./components/Pages/Dashboard/WishList";
@@ -59,6 +58,9 @@ import ServicePanting from "./components/Pages/ProductCategory/OurService/Servic
 import AllService from "./components/Pages/ProductCategory/OurService/AllService";
 import ProductDetails from "./components/Pages/ProductCategory/ProductDetails";
 import Cart from "./components/Pages/Cart/Cart";
+import SignIn from "./components/Pages/SignIn/SignIn";
+import SignUp from "./components/Pages/SignUp/SignUp";
+import CheckOutDetails from "./components/Pages/CheckoutDetails/CheckOutDetails";
 
 
 function App() {
@@ -99,10 +101,11 @@ function App() {
         </Route>
 
         {/* page  */}
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/singup" element={<SingUp></SingUp>}></Route>
+        <Route path="/login" element={<SignIn></SignIn>}></Route>
+        <Route path="/singup" element={<SignUp></SignUp>}></Route>
         <Route path="/single-product" element={<ProductDetails></ProductDetails>}></Route>
-        <Route path="/cart" element={<Cart></Cart>}></Route>
+        <Route path="/cart" element={<RequireAuth><Cart></Cart></RequireAuth>}></Route>
+        <Route path="/checkout/details" element={<RequireAuth><CheckOutDetails></CheckOutDetails></RequireAuth>}></Route>
 
 
         {/* home category  */}

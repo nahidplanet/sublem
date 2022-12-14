@@ -20,7 +20,7 @@ body {
 
 .form-box {
 	width: 380px;
-	height: 450px;
+	height: 500px;
 	padding: 20px;
 	display: flex;
 	flex-direction: column;

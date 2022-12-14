@@ -1,26 +1,24 @@
 import React from 'react';
 import { HeartIcon, PhoneIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import auth from '../../firebaseAuth/firebase.init';
 import useCart from '../../hooks/useCart';
-const HeaderTop = () => {
-const [products,totalProduct,totalPrice,isLoading,refetch] = useCart();
-    // let handleError;
-    // const [user, loading, error] = useAuthState(auth);
-    // const [signOut] = useSignOut(auth);
-    // const navigate = useNavigate()
-    // if (loading ) {
-    //     return <Loader></Loader>
-    // }
-    // if (error ) {
-    //     handleError = <p className='text-red-500'>{error.message}</p>
+import Loader from '../Shared/Loader';
 
-    // }
-    // if (!user) {
-    //     signOut()
-        // navigate("/login")
-    // }
+
+const HeaderTop = () => {
+    const [products, totalProduct, totalPrice, isLoading, refetch] = useCart();
+    const navigate = useNavigate();
+    const [user, loading, error] = useAuthState(auth);
+    const [signOut, signOutLoading, signOutError] = useSignOut(auth);
+    if (isLoading || loading || signOutLoading) {
+        // return <Loader></Loader>
+    }
+    if (user) {
+        // console.log(user?.user);
+    }
+
 
     return (
         <div className='hidden lg:block text-white text-sm capitalize'>
@@ -48,10 +46,14 @@ const [products,totalProduct,totalPrice,isLoading,refetch] = useCart();
                                     <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/wishlist"}>Wishlist</Link></li>
                                     <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/save-cart"}>Save Cart</Link></li>
                                     <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"dashboard/order-history"}>Order History</Link></li>
-                                    <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link>onClick={async () => {
-                                        // await signOut(auth)
-                                        // await localStorage.removeItem("accessToken");
-                                    }}</Link></li>
+                                    {user ?<li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link onClick={async () => {
+                                        await signOut()
+                                        await localStorage.removeItem("accessToken");
+                                        navigate('/login')
+                                    }}> Sign Out</Link></li>:
+                                    <li className='hover:bg-slate-200 text-gray-900 rounded-md'><Link to={"/login"}>Sign In</Link></li>
+                                    
+                                    }
 
                                 </ul>
                             </div>
@@ -59,20 +61,20 @@ const [products,totalProduct,totalPrice,isLoading,refetch] = useCart();
                     </div>
                 </div>
                 <div>
-                    <div  className="dropdown dropdown-end">
+                    <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle">
                             <div className="indicator">
                                 <ShoppingBagIcon className='w-5 h-5 text-normal' />
-                                <span className="badge badge-sm indicator-item">{totalProduct}</span>
+                                <span className="badge badge-sm indicator-item">{totalProduct ? totalProduct : 0}</span>
                             </div>
 
                         </label>
                         <div tabIndex={0} className="mt-3 rounded-sm card card-compact dropdown-content w-60 bg-gray-200 border-2 shadow">
                             <div className="card-body">
-                                <div className="font-bold text-md text-gray-900 flex items-center justify-between"><span>Total Cart Item</span> <span> {totalProduct}</span></div>
-                                <div className="font-bold text-md text-gray-900 flex items-center justify-between"><span>Estimated Total:</span> <span>{totalPrice}AED</span></div>
+                                <div className="font-bold text-md text-gray-900 flex items-center justify-between"><span>Total Cart Item</span> <span> {totalProduct ? totalProduct : '0'}</span></div>
+                                <div className="font-bold text-md text-gray-900 flex items-center justify-between"><span>Estimated Total:</span> <span>{totalPrice ? totalPrice : "00"}AED</span></div>
                                 <div className="card-actions">
-                                    <Link to="/cart"  className="btn btn-primary btn-block">View cart </Link>
+                                    <Link to="/cart" className="btn btn-primary btn-block">View cart </Link>
                                 </div>
                             </div>
                         </div>

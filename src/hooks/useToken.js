@@ -1,12 +1,22 @@
 
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-const useToken = (user) => {
-	let token ;
-
-
-
-	return [token]
+const useToken = (email) => {
+	const [token, setToken] = useState('');
+	useEffect(() => {
+		if (email) {
+			fetch(`http://localhost:5000/api/v1/login-user/jwt?email=${email}`)
+				.then(res => res.json())
+				.then(data => {
+					if (data.accessToken) {
+						localStorage.setItem('accessToken', data.accessToken);
+						setToken(data.accessToken);
+					}
+				});
+		}
+	}, [email]);
+	return [token];
 };
 
 export default useToken;

@@ -39,7 +39,7 @@ const AllHomeFurniture = () => {
 				</div>
 				{/* data?.data?.data?.products.length < 1 && */}
 				<div className={`${data?.data?.data?.products.length < 1 ? 'hidden' : 'block'}`} >
-					<div className="paginationContainer inline-block bg-gray-50 px-3 py-1 rounded-sm">
+					<div className="paginationContainer block bg-gray-50 px-3 py-1 rounded-sm">
 						<ReactPaginate className='flex justify-center items-center text-gray-800 font-semibold gap-5'
 							breakLabel="..."
 							nextLabel="next >"
